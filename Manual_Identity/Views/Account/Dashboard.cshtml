@@ -1,0 +1,23 @@
+﻿
+
+
+<div class="row justify-content-center">
+<h1 style="text-align:center">Welcome to Dashboard</h1>
+<form >
+   <button type="button" class="btn btn-primary btn-lg">
+        <a asp-controller="Account" asp-action="UsersList" style="text-decoration:none; color:white;">User List</a>
+        </button>
+
+  @* <button type="button" class="btn btn-secondary btn-lg  mt-10 ">
+       <a asp-controller="Account" asp-action="Details"  style="text-decoration:none; color:white;">Details</a>
+       </button> *@
+      
+       @*<div class= "col-12">*@
+         
+                  <button type="submit" formmethod="post" class="btn btn-danger" asp-controller="Account" asp-action="logout">logout</button>
+
+     </form>      
+          
+       @*</div>*@
+
+</div>

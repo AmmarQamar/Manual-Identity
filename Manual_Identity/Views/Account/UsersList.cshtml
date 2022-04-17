@@ -1,0 +1,68 @@
+﻿@*@model IEnumerable<Manual_Identity.Models.RegisterViewModel>*@
+@model IEnumerable<Manual_Identity.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "UsersList";
+}
+
+<h1 style="text-align:center">UsersList</h1>
+@*@foreach (var item in Model)
+    {
+<div class="card" style="width: 18rem;">
+  <img src="@item.PhotoPath" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="@item.FirstName">First Name</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+    }*@
+@*
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<table class="table table-hover">
+    <tr>
+        <th>Sr No</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>   
+@{
+    int rowNo = 1;
+}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> <p>@rowNo</p>  </td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+
+            <td>
+                <form method="get">
+                  <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
+                  <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
+                 <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+            </form>
+                  </td>
+            @{rowNo++; }
+        </tr>
+
+                  @*<a asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                 @*<a href="@Url.Action("Register",new { item.FirstName,item.LastName,item.Email,item.Gender,item.PhotoPath})" class="btn btn-success">Edit</a>*@
+
+                  @*<form method="post"  asp-controller="Account" asp-action="Register">*@
+         @*  <button type="submit">
+             <a  style="text-decoration:none; color:white;">Log Out</a>                   
+           </button>
+          </form>*@
+                @*<button type="submit" asp-controller="Account" asp-action="Register" class="btn btn-danger">Edit</button>*@
+             
+                @*<button class="btn btn-danger">Delete</button>*@
+
+           
+    }
+</table>
