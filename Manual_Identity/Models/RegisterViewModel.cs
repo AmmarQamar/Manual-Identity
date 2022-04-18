@@ -13,7 +13,10 @@ namespace Manual_Identity.Models
         public string FirstName { get; set; }
 
         [Required]
-        public string LastName { get; set; }
+        public string LastName { get; set; } 
+        
+        [Required]
+        public string UserName { get; set; }
 
         [Required]
         public string Gender { get; set; }
@@ -22,20 +25,14 @@ namespace Manual_Identity.Models
         [EmailAddress]
         public string Email { get; set; }
 
-
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
 
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Not Match with Password")]
         public string ConfirmPassword { get; set; }
         public string? ImgPath { get; set; }
-
-        //[NotMapped]
-        //[DisplayName("Choose Profile Pic")]
-        //public string Photo { get; set; }
     }
 }

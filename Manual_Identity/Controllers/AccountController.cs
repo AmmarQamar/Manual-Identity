@@ -26,7 +26,7 @@ namespace Manual_Identity.Controllers
         {
             return View();
         }
-        [HttpGet]
+  
 
         [HttpPost]
         [AllowAnonymous]
@@ -48,7 +48,7 @@ namespace Manual_Identity.Controllers
 
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
                     Gender = model.Gender,
                     PhotoPath = uniquefilename
@@ -159,6 +159,7 @@ namespace Manual_Identity.Controllers
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                UserName=user.UserName,
                 Gender = user.Gender,
                 ImgPath = user.PhotoPath
 
@@ -170,18 +171,13 @@ namespace Manual_Identity.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Edit(RegisterViewModel model, IFormFile imge)//
         {
-
             var user = await UserManager.FindByIdAsync(model.Id);
-
             if (user == null)
             {
                 ViewBag.Error = $"User with Id ={model.Id} not found";
-                //   return NotFound($"Unable to load user with ID '{UserManager.GetUserId(User)}'.");
                 return View("NotFound");
             }
-
             string uniquefilename = string.Empty;
-
             if (imge != null)
             {
                 string uploadsfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
@@ -189,15 +185,13 @@ namespace Manual_Identity.Controllers
                 string filePath = Path.Combine(uploadsfolder, uniquefilename);
                 imge.CopyTo(new FileStream(filePath, FileMode.Create));
             }
-
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Gender = model.Gender;
+            user.UserName = model.UserName;
             user.PhotoPath = imge == null ? user.PhotoPath : uniquefilename;
 
             var result = await UserManager.UpdateAsync(user);
-            //      await SignInManager.RefreshSignInAsync(newuser);
-
             if (result.Succeeded)
             {
                 return RedirectToAction("UsersList");
@@ -225,6 +219,7 @@ namespace Manual_Identity.Controllers
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                UserName=user.UserName,
                 Gender = user.Gender,
                 Email = user.Email,
                 ImgPath = user.PhotoPath
@@ -235,12 +230,7 @@ namespace Manual_Identity.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                //  ViewBag.Error =$"User with Id ={id} not found"
-                //     return NotFound($"Unable to load user with ID '{UserManager.GetUserId(User)}'.");
-                return View("NotFound");
-            }
+            if (user == null) { return View("NotFound"); }
             else
             {
                 var result = await UserManager.DeleteAsync(user);

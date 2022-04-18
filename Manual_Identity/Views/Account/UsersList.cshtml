@@ -30,7 +30,7 @@
                 <form method="get">
                   <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
                   <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
-                 <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+                 <button type="submit" class="btn btn-danger " asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete')">Delete</button>
             </form>
                   </td>
             @{rowNo++; }

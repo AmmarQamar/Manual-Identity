@@ -12,8 +12,8 @@
 
             <hr />
             <div class="form-floating mb-2">
-            <input type="hidden" asp-for="Id" autocomplete="off" value="0"/>
-            <input type="hidden" asp-for="ImgPath" autocomplete="off" value=""/>
+                <input type="hidden" asp-for="Id" autocomplete="off" value="0" />
+                <input type="hidden" asp-for="ImgPath" autocomplete="off" value="" />
 
                 <input asp-for="FirstName" class="form-control" autocomplete="on" />
                 <label asp-for="FirstName"> First Name</label>
@@ -24,9 +24,12 @@
                 <label asp-for="LastName"> Last Name</label>
                 <span asp-validation-for="LastName"></span>
             </div>
+            <div class="form-floating mb-2">
+                <input asp-for="UserName" class="form-control" autocomplete="on" />
+                <label asp-for="UserName"> User Name</label>
+                <span asp-validation-for="UserName"></span>
+            </div>
             <div class="form-group mb-2">
-                @*<input  asp-for="Gender" class="form-control"  autocomplete="off"/>*@
-                @*<label asp-for="Gender"></label>*@
                 <select asp-for="Gender" class="form-select">
                     <option value="">Select Gender</option>
                     <option>Male</option>
@@ -36,7 +39,7 @@
                 <span class="text-danger " asp-validation-for="Gender"></span>
             </div>
 
-            <div class="custom-file-i form-floating mb-2">
+            <div class="form-floating mb-2">
                 <input asp-for="Email" class="form-control" />
                 <label asp-for="Email"> Email</label>
                 <span asp-validation-for="Email"></span>
@@ -54,14 +57,6 @@
                 <span class="text-danger " asp-validation-for="ConfirmPassword"></span>
             </div>
 
-            @*<div class="form-floating mb-2">
-                <input type="file" asp-for="Photo" class="form-control custom-file-input"  />
-                <label asp-for="Photo" class="custom-file-input"></label>
-                <span class="text-danger " asp-validation-for="Photo"></span>
-                </div>*@
-
-
-
             <div class="pt-2  mb-2 ">
                 <input type="file" name="img" class="form-control" onChange="previewFile(this)" />
                 <img id="imgPreview" src="#" alt="pic" style="height: 300px; width: 100%; border: 2px solid black;display:none" />
@@ -78,26 +73,17 @@
 
 
 <script>
-        function previewFile(input){
+        function previewFile(input)
+        {
            var file = $("input[type=file]").get(0).files[0];
-
-           if(file){
-    var s=URL.createObjectURL(file);
-     $("#imgPreview").show();
-                   $("#imgPreview").attr("src", s);
-
+           if(file)
+           {
+            var s=URL.createObjectURL(file);
+            $("#imgPreview").show();
+            $("#imgPreview").attr("src", s);
            }
        }
 
-
-
-       //$(document).ready(function () {
-
-       //    $('.custom-file-input').on("change", function () {
-       //        var fileName = $(this).val().split("\\").pop();
-       //        $(this).next('.custom-file-label').html(fileName);
-       //    });
-       //});
 </script>
 
 <partial name="_ValidationScriptsPartial" />
