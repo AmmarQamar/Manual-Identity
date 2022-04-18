@@ -15,12 +15,12 @@
             <input type="hidden" asp-for="Id" autocomplete="off" value="0"/>
             <input type="hidden" asp-for="ImgPath" autocomplete="off" value=""/>
 
-                <input asp-for="FirstName" class="form-control" autocomplete="off" />
+                <input asp-for="FirstName" class="form-control" autocomplete="on" />
                 <label asp-for="FirstName"> First Name</label>
                 <span asp-validation-for="FirstName"></span>
             </div>
             <div class="form-floating mb-2">
-                <input asp-for="LastName" class="form-control" autocomplete="off" />
+                <input asp-for="LastName" class="form-control" autocomplete="on" />
                 <label asp-for="LastName"> Last Name</label>
                 <span asp-validation-for="LastName"></span>
             </div>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="custom-file-i form-floating mb-2">
-                <input asp-for="Email" class="form-control" autocomplete="off" />
+                <input asp-for="Email" class="form-control" />
                 <label asp-for="Email"> Email</label>
                 <span asp-validation-for="Email"></span>
             </div>

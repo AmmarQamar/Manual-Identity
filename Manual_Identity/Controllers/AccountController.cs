@@ -27,10 +27,6 @@ namespace Manual_Identity.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -64,7 +60,7 @@ namespace Manual_Identity.Controllers
                 if (result.Succeeded)
                 {
                     ViewBag.Message = "Regirstration successful";
-                    return View("Login");
+                    return RedirectToAction("Login","Account");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -74,14 +70,20 @@ namespace Manual_Identity.Controllers
 
             return View(model);
         }
+    
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
 
         //Login
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+                return View();
         }
+
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -98,7 +100,7 @@ namespace Manual_Identity.Controllers
                 }
                 ModelState.AddModelError("", "Invalid Login");
             }
-            return View("Login",model);
+            return RedirectToAction("Login",model);
         }
         [HttpPost]
         [AllowAnonymous]
@@ -107,13 +109,6 @@ namespace Manual_Identity.Controllers
             await SignInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-        // LogOut
-        //[HttpPost]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await SignInManager.SignOutAsync();
-        //    return RedirectToAction("Index", "Home");
-        //}
 
         //List
         public async Task<IActionResult> UsersList()

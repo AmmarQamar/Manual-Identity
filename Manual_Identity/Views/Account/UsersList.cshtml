@@ -34,20 +34,6 @@
             </form>
                   </td>
             @{rowNo++; }
-        </tr>
-
-                  @*<a asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                 @*<a href="@Url.Action("Register",new { item.FirstName,item.LastName,item.Email,item.Gender,item.PhotoPath})" class="btn btn-success">Edit</a>*@
-
-                  @*<form method="post"  asp-controller="Account" asp-action="Register">*@
-         @*  <button type="submit">
-             <a  style="text-decoration:none; color:white;">Log Out</a>                   
-           </button>
-          </form>*@
-                @*<button type="submit" asp-controller="Account" asp-action="Register" class="btn btn-danger">Edit</button>*@
-             
-                @*<button class="btn btn-danger">Delete</button>*@
-
-           
+        </tr>           
     }
 </table>

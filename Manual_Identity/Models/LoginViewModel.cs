@@ -4,11 +4,11 @@ namespace Manual_Identity.Models
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Enter Valid Email")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Enter Valid Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

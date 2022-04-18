@@ -14,7 +14,7 @@
 
             <hr />
             <div class="form-floating mb-2">
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" autocomplete="on" />
                 <label asp-for="Email"></label>
                 <span asp-validation-for="Email"></span>
             </div>
@@ -28,9 +28,7 @@
                 <label asp-for="RememberMe"></label>
             </div>
 
-
-            <button class="btn btn-primary" type="submit">Login</button>
-
+            <button class="btn btn-lg btn-primary" style="width: 100px; margin-top: 10px;" type="submit">Login</button>
 
         </form>
 

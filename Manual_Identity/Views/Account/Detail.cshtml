@@ -1,21 +1,17 @@
 ﻿@model Manual_Identity.Models.RegisterViewModel;
-
 @{
     ViewData["Title"] = "Detail";
 }
-
 <h1>Details</h1>
-
 <hr />
-<div class="row">
-
-    
+<form>
+<div class="row">    
         <table class="table table-hover">
             <tr>
                 <th col-md-5>
                     <label asp-for="FirstName"></label>
                 </th>
-                <td style="border-left:1px" col-md-6> @Model.FirstName</td>
+                <td col-md-6> @Model.FirstName</td>
             </tr>
 
             <tr>
@@ -40,16 +36,21 @@
                 <th col-md-5>
                     <label ">Image</label>
                 </th>
-                <td col-md-6>
-                    <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 138px; border: 2px solid black" />
+                <td col-md-7>
+                    <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style=" style="height: 300px; width: 100%;" />
                 </td>
             </tr>
-
-
         </table>
+        <form method="get">
+        <button type="submit" style="margin-left:auto"  class="btn btn-primary col-md-1" asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id" >Edit</button>
+        <button type="submit" style="margin-left:auto"  class="btn btn-primary col-md-1" asp-controller="Account" asp-action="UsersList" >Back</button>
+        </form>
+       @* <button style="margin-left:auto" class="btn btn-primary col-md-1">
+            <a  style="text-decoration:none;color:white" asp-controller="Account" asp-action="UsersList"  >Back</a>
+            </button>*@
 
     </div>
-
+    </form>
 
 
 

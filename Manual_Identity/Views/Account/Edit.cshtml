@@ -4,23 +4,22 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>RegisterViewModel</h4>
+        <h3 style="text-align:center">Edit</h3>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
+
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" autocomplete="off" />
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+            <div class="form-floating mb-2">
                 <input asp-for="FirstName" class="form-control" autocomplete="off" />
+                <label asp-for="FirstName" class="control-label"></label>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+             <div class="form-floating mb-2">
                 <input asp-for="LastName" class="form-control" />
+                <label asp-for="LastName" class="control-label"></label>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
               <select asp-for="Gender" class="form-select">
@@ -29,19 +28,21 @@
                     <option>Female</option>
                     <option>Other..</option>
                 </select>
-            <div class="pt-2  mb-2 ">
+            <div class="form-floating mt-2 mb-2 ">
                 <input type="file" name="imge" class="form-control" onChange="previewFile(this)" />     
-                <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 2px solid black" />
+                <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 1px solid black" />
             </div>
 
 
             <div class="form-group">
-                <input type="submit" value="UPDATE" class="btn btn-primary" />
-                <a asp-controller="Account" asp-action="UsersList" class="btn btn-primary">Cancel</a>
+                <button type="submit" class="btn btn-primary mt-2">Update</button>
+                <button type="buttom" class="btn btn-primary mt-2" asp-controller="Account" asp-action="UsersList">Cancel</button>
+               @* <input type="submit" value="UPDATE" class="btn btn-primary" />
+                <a asp-controller="Account" asp-action="UsersList" class="btn btn-primary">Cancel</a>*@
             </div>
         </form>
     </div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Account" asp-action="UsersList" style="text-decoration:none">Back to List</a>
 </div>
 @{
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
