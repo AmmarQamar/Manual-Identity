@@ -2,16 +2,94 @@
 @{
     ViewData["Title"] = "Detail";
 }
-<h1>Details</h1>
-<hr />
+
+<body style="background-color:#f3f0f040">
 <form>
-<div class="row">    
-        <table class="table table-hover">
+    <div class="row" style="font-family:Cursive, Times New Roman, serif;">
+        <div class="row col-md-12 mb-2">
+            <div class="d-flex flex-column align-items-center text-center ">
+                <img class="rounded-circle mt-2 mb-2" id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="" style="height:200px;width:200px">
+                <span class="font-weight-bold">@Model.FirstName @Model.LastName</span>
+                <span class="text-black-50">@Model.Email</span>
+            </div>
+        </div>
+
+        <div class="row  mb-2 justify-content-center">
+            <div class="d-flex col-md-10 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>First Name</label>
+                </div>
+                <div class="col-md-4">
+                    @Model.FirstName
+                </div>
+
+            </div>
+        </div>
+         <div class="row  mb-2 justify-content-center">
+            <div class="d-flex col-md-10 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>Last Name</label>
+                </div>
+                <div class="col-md-4">
+                    @Model.LastName
+                </div>
+            </div>
+        </div>
+         <div class="row  mb-2 justify-content-center">
+            <div class="d-flex col-md-10 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>User Name</label>
+                </div>
+                <div class="col-md-4">
+                    @Model.UserName
+                </div>
+            </div>
+        </div>
+        <div class="row  mb-2 justify-content-center">
+            <div class="d-flex col-md-10 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>Email </label>
+                </div>
+                <div class="col-md-4">
+                    @Model.Email
+                </div>
+            </div>
+        </div>
+       
+        <div class="row  mb-2 justify-content-center">
+            <div class="d-flex col-md-10 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <label>Gender</label>
+                </div>
+                <div class="col-md-4">
+                    @Model.Gender
+                </div>
+            </div>
+        </div>
+
+
+      
+      
+            <button type="submit" formmethod="get" style="margin-left:auto" class="btn btn-primary col-md-1 mb-5 " asp-controller="Account" asp-action="UsersList">Back</button>
+        
+        @* <button style="margin-left:auto" class="btn btn-primary col-md-1">
+            <a  style="text-decoration:none;color:white" asp-controller="Account" asp-action="UsersList"  >Back</a>
+            </button>*@
+
+    </div>
+</form>
+
+  @*<table class="table">
             <tr>
                 <th col-md-5>
-                    <label asp-for="FirstName"></label>
+                    <label asp-for="Gender"></label>
                 </th>
-                <td col-md-6> @Model.FirstName</td>
+                <td col-md-6> @Model.Gender</td>
             </tr>
 
             <tr>
@@ -19,7 +97,7 @@
                     <label asp-for="LastName"></label>
                 </th>
                 <td col-md-6> @Model.LastName</td>
-            </tr> 
+            </tr>
             <tr>
                 <th col-md-5>
                     <label asp-for="UserName"></label>
@@ -38,29 +116,16 @@
                 </th>
                 <td col-md-6> @Model.Email</td>
             </tr>
-            <tr>
+             <tr>
                 <th col-md-5>
-                    <label ">Image</label>
+                <label ">Image</label>
                 </th>
                 <td col-md-7>
-                    <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style=" style="height: 300px; width: 100%;" />
+                <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style=" style="height: 300px; width: 100%;" />
                 </td>
-            </tr>
+                </tr>
         </table>
-        <form method="get">
-        <button type="submit" style="margin-left:auto"  class="btn btn-primary col-md-1" asp-controller="Account" asp-action="UsersList" >Back</button>
-        </form>
-       @* <button style="margin-left:auto" class="btn btn-primary col-md-1">
-            <a  style="text-decoration:none;color:white" asp-controller="Account" asp-action="UsersList"  >Back</a>
-            </button>*@
-
-    </div>
-    </form>
-
-
-
-
-
+        *@
 
 
 
@@ -109,3 +174,4 @@
     await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }
 }
+</body>

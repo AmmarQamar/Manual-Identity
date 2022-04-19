@@ -3,37 +3,57 @@
 @{
     ViewData["Title"] = "UsersList";
 }
+<body style="background-color:#2b3035;font-family:cursive,'Times New Roman', Times, serif">
 
-<h1 style="text-align:center">UsersList</h1>
-
-
-<table class="table table-hover">
-    <tr>
-        <th>Sr No</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Email</th>
-        <th>Action</th>
-    </tr>   
-@{
-    int rowNo = 1;
-}
-    @foreach (var item in Model)
-    {
+<section>
+    <div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-3 mt-3">
+					<h2 style="color:white">Users List</h2>
+				</div>
+			</div>
+    <div class="row col-md-12">
+      <div class="userlist table-resposive-md">
+      <table class="table table-bordered table-dark table-hover">
         <tr>
-            <td> <p>@rowNo</p>  </td>
-            <td>@item.FirstName</td>
-            <td>@item.LastName</td>
-            <td>@item.Email</td>
+            <th>Sr No</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
 
-            <td>
-                <form method="get">
-                  <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
-                  <button type="submit" class="btn btn-danger" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
-                 <button type="submit" class="btn btn-danger " asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete')">Delete</button>
-            </form>
-                  </td>
-            @{rowNo++; }
-        </tr>           
-    }
-</table>
+        @{
+            int rowNo = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> <p>@rowNo</p>  </td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+
+                <td>
+                    <form method="get" class="listbtn">
+                        <button type="submit" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
+                        <button type="submit" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
+                        <button type="submit" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete:@item.Email')">Delete</button>
+                    </form>
+                    
+                </td>
+                @{
+                    rowNo++;
+                }
+            </tr>
+        }
+       
+    </table>
+    </div>
+    </div>
+    <form method="get">
+      <div class="row justify-content-end listbtn mt-3 mb-3" style="margin-right:35px">
+                      <button type="submit"  asp-controller="Account" asp-action="Dashboard"  >Back</button>
+                  </div>  
+     </form> 
+</section>
+</body>

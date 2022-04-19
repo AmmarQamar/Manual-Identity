@@ -14,8 +14,172 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: sans-serif;
 }
 .field-validation-error{
     color:red!important;
 }
+
+
+.logincard {
+    margin-bottom: 20px;
+    border: none;
+}
+
+.box {
+    width: 500px;
+    padding: 40px;
+    border-radius: 7px;
+    margin-left: 300px;
+    height: 480px;
+    left: 55%;
+    /*width: 500px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;*/
+    /*background: #191919;*/
+    background: currentColor;
+    text-align: center;
+    transition: 0.25s;
+    /* margin-top: 100px*/
+}
+
+
+
+    .box input[type="Email"],
+    .box input[type="Password"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 30px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 10px 10px;
+        width: 250px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s
+    }
+
+    .box h1 {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom:20px;
+    }
+
+    .box input[type="Email"]:focus,
+    .box input[type="password"]:focus {
+        width: 300px;
+        border-color: #2ecc71
+    }
+
+        .box button[type="submit"] {
+            /*border: 0;*/
+            
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 10px 40px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer
+        }
+
+        .box button[type="submit"]:hover {
+            background: #3498db
+        }
+
+.dashboard {
+    width: 500px;
+    padding: 40px;
+    border-radius: 7px;
+    margin-left: 300px;
+    height: 400px;
+    left: 55%;
+    /*width: 500px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;*/
+    /*background: #191919;*/
+    background: currentColor;
+    text-align: center;
+   
+}
+    .dashboard h3 {
+        color: aqua;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    .dashboard button {
+        width: 300px;
+        border-radius: 30px;
+        background: none;
+        display: block;
+        margin: 40px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 15px 40px;
+        outline: none;
+        color: white;
+        transition: 0.25s;
+    }
+
+        .dashboard button:hover {
+            background: #3498db
+        }
+
+
+.editbtn {
+    width: 100px;
+    border-radius: 10px;
+    background: #3498db;
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 25px;
+    outline: none;
+    color: white;
+}
+
+       /*.editview input[]
+       {
+           color:blue;
+           background:none;
+       }*/
+
+.userlist .table th, .userlist .table td {
+    border: none;
+    padding: 20px 30px;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: 4px solid #2b3035
+}
+
+.listbtn button {
+    color: white;
+    width: 80px;
+    background: none;
+    border: 0;
+    padding: 7px 20px;
+    border-radius: 15px;
+    border: 1px solid #0089ffc2;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+    .listbtn  :hover {
+        background: #0089ffc2;
+        border:1px solid green;
+        transition:1s;
+    }

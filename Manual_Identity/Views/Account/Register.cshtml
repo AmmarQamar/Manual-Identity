@@ -3,12 +3,13 @@
     ViewBag.Title = "Register";
 }
 
-<div class="row justify-content-center">
 
+<div class="row">
+    <div class="col-md-4"></div>
     <div class="col-md-4" asp-validation-summary="All">
         <h2 style="margin-left:80px">Register</h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" class="needs-validation">
 
             <hr />
             <div class="form-floating mb-2">
@@ -59,16 +60,33 @@
 
             <div class="pt-2  mb-2 ">
                 <input type="file" name="img" class="form-control" onChange="previewFile(this)" />
-                <img id="imgPreview" src="#" alt="pic" style="height: 300px; width: 100%; border: 2px solid black;display:none" />
+                    @*<img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 1px solid black" />*@
+
             </div>
 
+
+            @*  <div class="row  pt-2  mb-2 ">
+                  <div class="col-md-3">
+                <input type="file" name="img" class="form-control" onChange="previewFile(this)" />
+                </div>
+                <div class="col-md-3">
+                <img id="imgPreview" src="#" alt="pic" style="height: 300px; width: 100%; border: 1px solid black;display:none" />
+                </div>
+            </div>
+*@
             <button class="btn btn-primary" type="submit">Register</button>
 
 
         </form>
-
     </div>
+        <div class="col-md-4">      
+            <img id="imgPreview" src="#" alt="pic" style="height: 150px; margin-left: 50px; margin-top: 409px;width: 40%; display:none;border-radius:7px;" />
+            </div>
+
 </div>
+          
+
+
 
 
 
@@ -84,7 +102,9 @@
            }
        }
 
+     
+
+
 </script>
 
 <partial name="_ValidationScriptsPartial" />
-
