@@ -3,199 +3,123 @@
 @{
     ViewData["Title"] = "Edit";
 }
-@*<section name="1">
+@*<body style="background-image:url('../image/bg2.jpeg')">*@
+<body style="color:white;  background: linear-gradient(to right, #b92b27, #1565c0);margin:0px;padding:0px">
 
-    <h3 style="text-align:center">Edit</h3>
-    <hr />
-    <form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <div class="row">
-    <div class="col-md-4"></div>
+    <section nam="complete">
+        <div class="row" style="margin-bottom:50px;font-family:Cursive, Times New Roman">
+            <div class="col-md-4"></div>
 
-    <div class="col-md-4">
+            <div class="col-md-4 justify-content-center edit">
+                <h2 style="text-align:center;margin-top:20px;">Edit</h2>
+                <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 150px; width: 150px; border-radius: 7px;margin-top: 50px;margin-left: 115px; " />
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" autocomplete="off" />
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" autocomplete="off" />
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" autocomplete="off" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
 
-    <div class="form-floating mb-2">
-    <input asp-for="FirstName" class="form-control" autocomplete="off" />
-    <label asp-for="FirstName" class="control-label"></label>
-    <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
 
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
 
-    <div class="form-floating mb-2">
-    <input asp-for="LastName" class="form-control" />
-    <label asp-for="LastName" class="control-label"></label>
-    <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
+                    <label asp-for="Gender" style="margin-right: 48px;"></label>
+                    <select asp-for="Gender">
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other..</option>
+                    </select>
 
-    <div class="form-floating mb-2">
+                     <input type="file" name="imge" style="width:100%;" onChange="previewFile(this)" />
 
-    <input asp-for="UserName" class="form-control" />
-    <label asp-for="UserName" class="control-label"></label>
-    <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
+                    <div class="editbtn">
+                        <button type="submit" formmethod="post">Update</button>
+                        <button type="submit" asp-controller="Account" asp-action="UsersList">Cancel</button>
+                    </div>
+                </form>
+            </div>
 
-    <div class="form-floating mb-2">
-    <select asp-for="Gender" class="form-select">
-    <option value="">Select Gender</option>
-    <option>Male</option>
-    <option>Female</option>
-    <option>Other..</option>
-    </select>
-    </div>
-
-    <div class="pt-2  mb-2 ">
-    <input type="file" name="imge" class="form-control" onChange="previewFile(this)" />
-    <img id="imgPreview" src="@Url.Content(" ~ /image")/@Model.ImgPath" alt="pic" style="height: 150px; width: 200px; border: 1px solid black" />
-    </div>
-
-    </div>
+            <div class="col-md-4">
+            </div>
 
 
-    <div class="col-md-4">kllkj
-    @*                 <img id="imgPreview" src="@Url.Content(" ~ /image")/@Model.ImgPath" alt="pic" style="height: 150px; width: 200px; border: 1px solid black" />       </div>
-
-
-
-
-    <div class="form-group">
-    <button type="submit" class="btn btn-primary mt-2">Update</button>
-    <button type="buttom" class="btn btn-primary mt-2" asp-controller="Account" asp-action="UsersList">Cancel</button>
-    </div>
-
-
-
-    <a asp-controller="Account" asp-action="UsersList" style="text-decoration:none">Back to List</a>
-    </div>
-    </form>
-
+        </div>
     </section>
-    *@
 
+    @*without design success*@
 
-<section nam="change2">
-    <h3 style="text-align:center">Edit</h3>
-    <hr />
-    <div class="row">
-        <div class="col-md-4"></div>
-
-
+    @*<sectionname="change1">
+        <h3 style="text-align:center">Edit</h3>
+        <hr />
+        <div class="row justify-content-center">
         <div class="col-md-4">
 
-            <form asp-action="Edit" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" autocomplete="off" />
-                <div class="form-floating mb-2">
-                    <input asp-for="FirstName" class="form-control" autocomplete="off" />
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-2">
-                    <input asp-for="LastName" class="form-control" />
-                    <label asp-for="LastName" class="control-label"></label>
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-2">
-                    <input asp-for="UserName" class="form-control" />
-                    <label asp-for="UserName" class="control-label"></label>
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <select asp-for="Gender" class="form-select">
-                    <option value="">Select Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other..</option>
-                </select>
-                <div class="form-floating mt-2 mb-2 ">
-                    <input type="file" name="imge" class="form-control" onChange="previewFile(this)" />
-                    @*<img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 1px solid black" />*@
-                </div>
-
-
-                <div class="form-group">
-                    <button type="submit" class="editbtn mt-2">Update</button>
-                    <button type="submit" class="editbtn mt-2" asp-controller="Account" asp-action="UsersList">Cancel</button>
-                </div>
-            </form>
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" autocomplete="off" />
+        <div class="form-floating mb-2">
+        <input asp-for="FirstName" class="form-control" autocomplete="off" />
+        <label asp-for="FirstName" class="control-label"></label>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-2">
+        <input asp-for="LastName" class="form-control" />
+        <label asp-for="LastName" class="control-label"></label>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-2">
+        <input asp-for="UserName" class="form-control" />
+        <label asp-for="UserName" class="control-label"></label>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <select asp-for="Gender" class="form-select">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other..</option>
+        </select>
+        <div class="form-floating mt-2 mb-2 ">
+        <input type="file" name="imge" class="form-control" onChange="previewFile(this)" />
+        <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 1px solid black" />
         </div>
 
-        <div class="col-md-4">
-            <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 150px; width: 150px; border-radius: 7px;margin-top: 151px;margin-left: 40px; "/>
+
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary mt-2">Update</button>
+        <button type="buttom" class="btn btn-primary mt-2" asp-controller="Account" asp-action="UsersList">Cancel</button>
         </div>
-      
-    </div>
- <form method="get">
-            <button type="submit" style="margin-left:auto" class="editbtn " asp-controller="Account" asp-action="UsersList">Back</button>
-        </form> 
-</section>
-
- @*success*@
-
-@*<sectionname="change1">
-    <h3 style="text-align:center">Edit</h3>
-    <hr />
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-
-            <form asp-action="Edit" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" autocomplete="off" />
-                <div class="form-floating mb-2">
-                    <input asp-for="FirstName" class="form-control" autocomplete="off" />
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-2">
-                    <input asp-for="LastName" class="form-control" />
-                    <label asp-for="LastName" class="control-label"></label>
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-2">
-                    <input asp-for="UserName" class="form-control" />
-                    <label asp-for="UserName" class="control-label"></label>
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <select asp-for="Gender" class="form-select">
-                    <option value="">Select Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other..</option>
-                </select>
-                <div class="form-floating mt-2 mb-2 ">
-                    <input type="file" name="imge" class="form-control" onChange="previewFile(this)" />
-                    <img id="imgPreview" src="@Url.Content("~/image")/@Model.ImgPath" alt="pic" style="height: 300px; width: 100%; border: 1px solid black" />
-                </div>
-
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary mt-2">Update</button>
-                    <button type="buttom" class="btn btn-primary mt-2" asp-controller="Account" asp-action="UsersList">Cancel</button>
-                </div>
-            </form>
+        </form>
         </div>
         <a asp-controller="Account" asp-action="UsersList" style="text-decoration:none">Back to List</a>
-    </div>
+        </div>
 
-</section>
-*@
-@{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-
-}
-
-<script>
-    function previewFile(input)
-    {
-    var file = $("input[type=file]").get(0).files[0];
-    if(file)
-    {
-    var s=URL.createObjectURL(file);
-    $("#imgPreview").show();
-    $("#imgPreview").attr("src", s);
+        </section>
+    *@
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
 
     }
-    }
 
-</script>
+    <script>
+        function previewFile(input)
+        {
+        var file = $("input[type=file]").get(0).files[0];
+        if(file)
+        {
+        var s=URL.createObjectURL(file);
+        $("#imgPreview").show();
+        $("#imgPreview").attr("src", s);
 
+        }
+        }
+
+    </script>
+
+</body>

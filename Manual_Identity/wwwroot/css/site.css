@@ -1,24 +1,25 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
     font-family: sans-serif;
 }
-.field-validation-error{
-    color:red!important;
+
+.field-validation-error {
+    color: red !important;
 }
 
 
@@ -28,22 +29,14 @@ body {
 }
 
 .box {
-    width: 500px;
+    // width: 500px;
     padding: 40px;
     border-radius: 7px;
-    margin-left: 300px;
+    // margin-left: 300px;
     height: 480px;
-    left: 55%;
-    /*width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;*/
-    /*background: #191919;*/
     background: currentColor;
     text-align: center;
     transition: 0.25s;
-    /* margin-top: 100px*/
 }
 
 
@@ -68,7 +61,7 @@ body {
         color: white;
         text-transform: uppercase;
         font-weight: 500;
-        margin-bottom:20px;
+        margin-bottom: 20px;
     }
 
     .box input[type="Email"]:focus,
@@ -77,21 +70,21 @@ body {
         border-color: #2ecc71
     }
 
-        .box button[type="submit"] {
-            /*border: 0;*/
-            
-            background: none;
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-            border: 2px solid #3498db;
-            padding: 10px 40px;
-            outline: none;
-            color: white;
-            border-radius: 24px;
-            transition: 0.25s;
-            cursor: pointer
-        }
+    .box button[type="submit"] {
+        /*border: 0;*/
+
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 10px 40px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+        cursor: pointer
+    }
 
         .box button[type="submit"]:hover {
             background: #3498db
@@ -101,19 +94,11 @@ body {
     width: 500px;
     padding: 40px;
     border-radius: 7px;
-    margin-left: 300px;
     height: 400px;
-    left: 55%;
-    /*width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;*/
-    /*background: #191919;*/
     background: currentColor;
     text-align: center;
-   
 }
+
     .dashboard h3 {
         color: aqua;
         text-align: center;
@@ -139,26 +124,61 @@ body {
             background: #3498db
         }
 
+.edit {
+    background-color: #000000b0;
+    color: white;
+    display: block;
+    width: 450px;
+    padding-left: 40px;
+    border-radius: 7px;
+    height: 730px;
+}
 
-.editbtn {
+    .edit label {
+        margin-right: 25px;
+    }
+
+    .edit input, .edit select {
+        background: none;
+        width: 250px;
+        padding: 15px 45px;
+        margin-top: 10px;
+        outline: 0px;
+        border: 0;
+        border-bottom: 1px solid white;
+        color: white;
+    }
+
+        .edit input:focus {
+            border: 0;
+            transition: 0.5s;
+            color: #23d6df;
+            border-bottom: 1px solid #23d6df;
+        }
+
+    .edit option {
+        background-color: black;
+    }
+
+.editbtn button {
     width: 100px;
+    margin-top: 25px;
     border-radius: 10px;
-    background: #3498db;
+    background: none;
     margin-right: 20px;
+    margin-bottom: :20px;
     text-align: center;
     border: 2px solid #3498db;
-    padding: 10px 25px;
-    outline: none;
+    padding: 8px 25px;
     color: white;
 }
 
-       /*.editview input[]
-       {
-           color:blue;
-           background:none;
-       }*/
+    .editbtn button :hover {
+        border: 2px solid #3498db;
+        background-color: #23d6df;
+    }
 
-.userlist .table th, .userlist .table td {
+.userlist table, .userlist table th, .userlist table tr, userlist table td {
     border: none;
     padding: 20px 30px;
     font-size: 14px;
@@ -178,8 +198,10 @@ body {
     text-align: center;
 }
 
-    .listbtn  :hover {
-        background: #0089ffc2;
-        border:1px solid green;
-        transition:1s;
-    }
+.listbtn :hover {
+    background: #0089ffc2;
+    border: 1px solid green;
+    transition: 1s;
+}
+
+//////////////////////////////////////
