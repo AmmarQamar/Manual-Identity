@@ -102,9 +102,10 @@
            }
        }
 
-     
-
-
+  
 </script>
 
-<partial name="_ValidationScriptsPartial" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

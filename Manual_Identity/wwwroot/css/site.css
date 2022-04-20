@@ -29,14 +29,15 @@ body {
 }
 
 .box {
-    // width: 500px;
+   
     padding: 40px;
     border-radius: 7px;
     // margin-left: 300px;
-    height: 480px;
+    height: 520px;
     background: currentColor;
     text-align: center;
     transition: 0.25s;
+    margin-bottom:70px;
 }
 
 
@@ -179,7 +180,7 @@ body {
     }
 
 .userlist table, .userlist table th, .userlist table tr, userlist table td {
-    border: none;
+    border: none;               
     padding: 20px 30px;
     font-size: 14px;
     color: #fff;
