@@ -2,38 +2,82 @@
 @{
     ViewData["Title"] = "All Roles";
 }
-
+@*
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+*@
+<a class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New</a>
 <h1>All Roles</h1>
-@if(Model.Any())
-{
-         <a  class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New</a>
+<table id="datatable" class="table table-borderless table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Roll Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    foreach(var role in Model)
+
+        @foreach (var role in Model)
+        {
+            <tr>
+
+                <td>@role.Name</td>
+
+
+                <td>
+                    <form method="get">
+                    <button type="submit" class=" btn btn-primary " asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id">Edit</button>
+                    <button type="submit" class=" btn btn-primary " asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id">Delete</button>
+                    @*<button type="submit" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete:@item.Email')">Delete</button>*@
+                     </form>
+
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+
+@*
+    <section name="old success">
+    @if (Model.Any())
     {
-        <div class="card mt-3">
-            <div class="card-header">
-                <h5>Role Name</h5></div>
-     <div class="card-body mt-3">
-    <p class="card-text">@role.Name</p>
-   <a  class="btn btn-primary" asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
-    <a  class="btn btn-danger">Delete</a>
-  </div></div>
- 
+    <a class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New</a>
 
-
-   @*     <div class="col-md-12 mb-10">
-            <h3>Role Name</h3>
-          <h5 style="margin-left:40px;">   @role.Name </h5>           
-            <a  class="btn btn-primary">Edit</a>
-            <a  class="btn btn-primary">Delete</a>
-        </div>*@
-    }
-}
-else
-{
-    <div class="row">
-        <h4>No roles Found</h4>
-        <button type="submit" class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New Role</button>
+    foreach (var role in Model)
+    {
+    <div class="card mt-3">
+    <div class="card-header">
+    <h5>Role Name</h5>
     </div>
-}
+    <div class="card-body mt-3">
+    <p class="card-text">@role.Name</p>
+    <a class="btn btn-primary" asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
+    <a class="btn btn-danger">Delete</a>
+    </div>
+    </div>
 
+    }
+    }
+    else
+    {
+    <div class="row">
+    <h4>No roles Found</h4>
+    <button type="submit" class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New Role</button>
+    </div>
+    }
+
+    </section>
+*@
+@section Scripts
+{
+
+<script>
+
+              //$(document).ready( function ()
+              //{  $('#datatable').DataTable(); } );
+</script>
+}

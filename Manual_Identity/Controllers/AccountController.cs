@@ -107,13 +107,15 @@ namespace Manual_Identity.Controllers
         public async Task<IActionResult> Logout()
         {
             await SignInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Register", "Account");
         }
 
         //List
+        [AllowAnonymous]
         public async Task<IActionResult> UsersList()
         {
             var list = await UserManager.Users.ToListAsync();
+           
             return View(list);
         }
 

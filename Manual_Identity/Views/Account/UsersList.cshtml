@@ -1,61 +1,168 @@
-﻿@*@model IEnumerable<Manual_Identity.Models.RegisterViewModel>*@
-@model IEnumerable<Manual_Identity.Models.ApplicationUser>
+﻿@model IEnumerable<Manual_Identity.Models.ApplicationUser>
+@inject SignInManager<ApplicationUser> signInManager;
+
 @{
     ViewData["Title"] = "UsersList";
+    Layout = "~/Views/Shared/SideNavBar.cshtml";
 }
-<body style="background-color:#2b3035;font-family:cursive,'Times New Roman', Times, serif">
+    <!-- End Navbar -->
+  @*  <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Authors table</h6>
+                        </div>
+                    </div>
 
-<section>
-    <div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-3 mt-3">
-					<h2 style="color:white">Users List</h2>
-				</div>
-			</div>
-    <div class="row col-md-12">
-        <div class="userlist">
-      <div class="table-resposive-md">
-      <table class="table table-borderless table-dark table-hover">
-        <tr>
-            <th>Sr No</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
+                </div>
+            </div>
+        </div>*@
+        <main class="main-content  mt-0">
+            <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Users</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">First Name</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Last Name</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        @*                    @{ int rowNo = 1;  }  *@
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div>
+                                            <img src="~/image/@item.PhotoPath" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            @*<h6 class="mb-0 text-sm">@item.Email</h6>*@
+                                            <p class="text-xs text-secondary font-weight-bold mb-0">@item.Email</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">@item.FirstName</p>
+                                    @* <p class="text-xs text-secondary mb-0">@item.FirstName</p>  *@
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">@item.LastName</p>
+                                </td>
 
-        @{
-            int rowNo = 1;
-        }
-        @foreach (var item in Model)
-        {
-            <tr>
+                                <td class="align-middle text-center text-sm">
+                                    <form method="get">
+                                        <a class="badge badge-sm bg-gradient-success" asp-action="Edit" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user">
+                                            Edit
+                                        </a>
+                                        <a class="badge badge-sm bg-gradient-success" asp-action="Detail" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user">
+                                            Detail
+                                        </a>
+                                        <a class="badge badge-sm bg-gradient-success" asp-action="Delete" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.Email')">
+                                            Delete
+                                        </a>
+
+
+                                    </form>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+
+
+
+                                    @*   <td>
+                                        <form method="get"class="btn btn-primary">
+                                        <button type="submit" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
+                                        <button type="submit" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
+                                        <button type="submit" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete:@item.Email')">Delete</button>
+                                        </form>
+
+                                        </td>*@
+                                    @*@{rowNo++;}*@
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+
+
+            @*<body style="background-color:#2b3035;font-family:cursive,'Times New Roman', Times, serif">
+
+                <section>
+                <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-3 mt-3">
+                <h2 style="color:white">Users List</h2>
+                </div>
+                </div>
+
+                <div class="row>
+                <div class="col-sm-2"></div>
+                <div class="col-md-10>
+
+                <div class="userlist">
+                <div class="table-resposive-md">
+                <table id="datatable" class="table table-borderless table-dark table-hover ">
+                <thead>
+                <tr>
+                <th>Sr No</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @{
+                int rowNo = 1;
+                }
+                @foreach (var item in Model)
+                {
+                <tr>
                 <td> <p>@rowNo</p>  </td>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
                 <td>@item.Email</td>
 
                 <td>
-                    <form method="get" class="listbtn">
-                        <button type="submit" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
-                        <button type="submit" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
-                        <button type="submit" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete:@item.Email')">Delete</button>
-                    </form>
-                    
+                <form method="get" class="listbtn">
+                <button type="submit" asp-controller="Account" asp-action="Edit" asp-route-id="@item.Id">Edit</button>
+                <button type="submit" asp-controller="Account" asp-action="Detail" asp-route-id="@item.Id">Detail</button>
+                <button type="submit" asp-controller="Account" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you want to delete:@item.Email')">Delete</button>
+                </form>
+
                 </td>
                 @{
-                    rowNo++;
+                rowNo++;
                 }
-            </tr>
-        }
-       
-    </table>
-    </div>
-    </div>
-    </div>
-    <form method="get">
-      <div class="row justify-content-end listbtn mt-3 mb-3" style="margin-right:35px">
-                      <button type="submit"  asp-controller="Account" asp-action="Dashboard"  >Back</button>
-                  </div>  
-     </form> 
-</section>
-</body>
+                </tr>
+                }
+                </tbody>
+
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                <form method="get">
+                <div class="row justify-content-end listbtn mt-3 mb-3" style="margin-right:35px">
+                <button type="submit" asp-controller="Account" asp-action="Dashboard">Back</button>
+                </div>
+                </form>
+                </section>
+
+                @section Scripts
+                {
+
+
+                <script>
+            *@
+

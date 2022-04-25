@@ -1,9 +1,11 @@
 ﻿using Manual_Identity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manual_Identity.Controllers
 {
+    //[Authorize(Roles ="admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -78,6 +80,8 @@ namespace Manual_Identity.Controllers
             }
           
         }
+
+
         [HttpPost]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
         {
@@ -103,7 +107,45 @@ namespace Manual_Identity.Controllers
                 return View(model);
             }
 
-        
+       
+
+        [HttpGet]
+        public async Task<IActionResult> EditUsersInRole(string roleId)
+        {
+            ViewBag.roleId = roleId;
+            var role=await roleManager.FindByIdAsync(roleId);
+            if(role==null)
+            {
+                return NotFound();
+            }
+            var model = new List<UserRoleViewModel>();
+            foreach(var user in userManager.Users) 
+            {
+                var userRoleViewModel = new UserRoleViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                };
+                if(await userManager.IsInRoleAsync(user,role.Name))
+                {
+                    userRoleViewModel.IsSelected = true;
+                }
+                else
+                {
+                    userRoleViewModel.IsSelected = false;
+                }
+                model.Add(userRoleViewModel);
+
+            }
+            return View(model);
+        } 
+        //[HttpPost]
+        //public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> userRoleViewModels)
+        //{
+        //    //await UserManager.AddToRoleAsync(poweruser, "Admin");
+            
+        //    return View();
+        //}
 
     }
 }
