@@ -1,0 +1,78 @@
+﻿@model Manual_Identity.Models.StudentViewModel
+@{
+    ViewData["Title"] = "Student";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+
+}
+
+ <div class="page-header min-vh-100">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-4 alert-danger"  asp-validation-summary="All"></div>
+                <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                    <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5" style="margin-top:50px">
+                    <div class="card card-plain" >
+                        <div class="card-header">
+                            <h4 class="font-weight-bolder">Add Student</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" asp-action="AdStudent">
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="hidden" asp-for="StudentId" />
+                           
+                                    <input  asp-for="StudentName" placeholder="Student Name" class="form-control">
+                                      <span asp-validation-for="StudentName"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="FatherName" placeholder="Father Name" class="form-control">
+                                      <span asp-validation-for="FatherName"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3 form-control">
+
+                                 @*Work Proper*@
+                                    @Html.DropDownList("CourseId",
+                                    new SelectList(ViewBag.Courses,"CourseId","Name"),
+                                    new {@class="form-select ps-3"})
+
+
+                                      @* <select asp-for="CourseId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Courses,"CourseId","Name"))"
+                                    > </select>*@
+@*                                    <input  asp-for="CourseId" placeholder="Select Course" class="form-control">
+*@                                    @*<input  asp-for="CourseId" placeholder="Select Course" class="form-control">
+                                      <span asp-validation-for="CourseId"></span>*@
+                                      @* @Html.DropDownList("CourseId", Model.CourseId)*@
+                                        @* @Html.DropDownList("CourseId",
+                                         new SelectList(Enum.GetValues(typeof())),
+                                         "Select Course",
+                                         new { @class = "form-control form-select" })*@
+                                </div>
+                    
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="Address" placeholder="Address" class="form-control">
+                                      <span asp-validation-for="Address"></span>
+                                </div>
+                                 @if (ViewBag.Message != null && ViewBag.Message == "Exist")
+                            {
+                                    <span style="color:red;"> Same Data Already exist.</span>                      
+                            }
+                               
+                                <div class="text-center">
+                                    <button type="submit" asp-controller="Stud_Dep" asp-action="AdStudent" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+ @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+</script>

@@ -12,7 +12,8 @@ namespace Manual_Identity.Data
         {
 
         }
-
+        public DbSet<StudentViewModel> Students { get; set; }
+        public DbSet<CourseViewModel> Courses { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -20,6 +21,7 @@ namespace Manual_Identity.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
 
         //public DbSet<Manual_Identity.Models.RegisterViewModel> RegisterViewModel { get; set; }
 

@@ -1,34 +1,21 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+$("#success").function () {
+    $(".notify").toggleClass("active");
+    $("#notifyType").toggleClass("success");
 
-// Write your JavaScript code.
+    setTimeout(function () {
+        $(".notify").removeClass("active");
+        $("#notifyType").removeClass("success");
+    }, 2000);
+};
 
-/*$(document).ready(function () { $('#datatable').DataTable(); });*/
+$("#failure").click(function () {
+    $(".notify").addClass("active");
+    $("#notifyType").addClass("failure");
 
-//$(document).ready(function () {
-//    $('#datatable').DataTable();
+    setTimeout(function () {
+        $(".notify").removeClass("active");
+        $("#notifyType").removeClass("failure");
+    }, 2000);
+});
 
-//    $.ajax({
-//        method: 'get',
-//        url: 'Account/UsersList',
-//        datatype: 'json',
-//        sucess: function (response)
-//        {
-//            $('#datatable').dataTable(
-//                {
-//                data: response,
-//                columns: [
-//                    { 'data': 'FirstName' },
-//                    { 'data': 'LastName' },
-//                    { 'data': 'Email' },
-
-//                    { 'data': 'Salary' }
-//                ]
-
-//            });
-
-
-
-
-
-//        });
