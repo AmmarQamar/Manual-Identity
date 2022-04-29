@@ -57,17 +57,12 @@
                 </div>
                 <form method="get">
                 <div class="card-footer" >
-                    <a class="btn btn-primary mb-3" href="~/Administration/EditUsersInRole?roleId=@Model.Id">Add or Remove User</a>
-                    <button  type="submit" class="btn btn-primary mb-3" asp-controller="Administration" asp-action="EditUsersInRole" asp-route-roleId="@Model.Id">Add or Remove User</button>
+                    @*proper work*@
+                    @*<a class="btn btn-primary mb-3" href="~/Administration/EditUsersInRole?roleId=@Model.Id">Add or Remove User</a>*@
+                    <a class="btn btn-primary mb-3" asp-controller="Administration" asp-action="EditUsersInRole" asp-route-roleId="@Model.Id">Add or Remove User</a>
               </div>
               </form>
-@*                                    <button   class="btn btn-primary mb-3" asp-controller="Administration" asp-action="EditUsersInRole" asp-route-id="@Model.Id">Add or Remove User</button>
-                    <a  asp-action="EditUsersInRole"  asp-controller="Administration"  asp-route-id="@Model.Id" class="btn btn-primary mb-3">Add or Remove Users</a>
-                    @* <button type="submit" class="btn btn-primary mb-3">Add User</button>
-                    <button type="submit" formmethod="get" class="btn btn-primary mb-3" asp-controller="Administration" asp-action="ListRoles">Delete User</button>
-               *@
-           
-        </div>
+
 
 
 
