@@ -11,11 +11,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="~/assets/img/favicon.png">
   <title>
-    Material Dashboard 
+    Material Dashboard 2 by Creative Tim
   </title>
   <!--     Fonts and icons     -->
-@*  <link rel="stylesheet" type="text/css" href="~/assets/fonts/nucleo.woff2" />
-*@  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -25,7 +24,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="~/assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
-
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -39,9 +37,9 @@
     </div>
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav" id="myTab">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white "  asp-controller="Account" asp-action="Dashboard" role="tab">
+          <a class="nav-link text-white "  asp-controller="Account" asp-action="Dashboard">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -49,7 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white bg-gradient-primary" asp-controller="Account" asp-action="UsersList" role="tab">
+          <a class="nav-link text-white active bg-gradient-primary" asp-controller="Account" asp-action="UsersList">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -57,7 +55,7 @@
           </a>
         </li>
          <li class="nav-item">
-          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="Student" role="tab">
+          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="Student">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
@@ -65,7 +63,7 @@
           </a>
         </li>
             <li class="nav-item">
-          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="Student_List" role="tab">
+          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="Student_List">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
@@ -82,7 +80,7 @@
           </a>
         </li>
          <li class="nav-item">
-          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="CourseList" role="tab">
+          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="CourseList">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
             </div>
@@ -258,7 +256,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Table</h6>
+                <h6 class="text-white text-capitalize ps-3">Authors table</h6>
               </div>
             </div>
            
@@ -272,11 +270,9 @@
   </main>
  <!--   Core JS Files   -->
   <script src="~/assets/js/core/popper.min.js"></script>
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
   <script src="~/assets/js/core/bootstrap.min.js"></script>
   <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="~/assets/js/plugins/smooth-scrollbar.min.js"></script>
-
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

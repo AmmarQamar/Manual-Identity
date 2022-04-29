@@ -1,6 +1,6 @@
 ﻿@model List<UserRoleViewModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
 }
 
 @{
@@ -16,14 +16,6 @@
             @for(int i=0;i<Model.Count;i++)
             {
                 <div class="form-check m-1">
-                     <input type="hidden" asp-for="@Model[i].UserId" value="@Model[i].UserId" />
-                     <input type="hidden" asp-for="@Model[i].UserName" value="@Model[i].UserName" />
-                    <input asp-for="@Model[i].IsSelected" class="form-check-input"/>
-                   <label class="form-check-label" asp-for="@Model[i].IsSelected" >
-                    @Model[i].UserName
-                </label>
-                </div>
-                @* <div class="form-check m-1">
                      <input type="hidden" asp-for="@Model[i].RoleId" value="@ViewBag.roleId" />
                      <input type="hidden" asp-for="@Model[i].UserId" value="@Model[i].UserId" />
                      <input type="hidden" asp-for="@Model[i].UserName" value="@Model[i].UserName" />
@@ -31,7 +23,7 @@
                    <div class="form-check-label" asp-for="@Model[i].IsSelected" >
                     @Model[i].UserName
                 </div>
-                </div>*@
+                </div>
 
             }
         </div>

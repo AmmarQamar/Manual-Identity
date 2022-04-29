@@ -2,16 +2,13 @@
 @{
     ViewData["Title"] = "All Roles";
 }
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
- 
-<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
-  @*<script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>*@
-
-
+@*
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+*@
 <a class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Add New</a>
 <h1>All Roles</h1>
-<table id="myTable" class="table table-borderless table-dark table-hover">
+<table id="datatable" class="table table-borderless table-dark table-hover">
     <thead>
         <tr>
             <th>Roll Name</th>
@@ -75,10 +72,12 @@
 
     </section>
 *@
-
+@section Scripts
+{
 
 <script>
 
-              $(document).ready( function ()
-              {  $('#myTable').DataTable(); } );
+              //$(document).ready( function ()
+              //{  $('#datatable').DataTable(); } );
 </script>
+}
