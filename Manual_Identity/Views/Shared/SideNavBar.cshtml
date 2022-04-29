@@ -18,6 +18,10 @@
 *@  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
+      <script src="~/lib/jquery/dist/jquery-3.6.0.min.js"></script>
+
+  <link href="~/lib/datatables.net/datatables.min.js" rel="stylesheet" />
+  <link href="~/lib/datatables.net/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -25,7 +29,24 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="~/assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
-
+    <script>
+      $(document).ready(function() {
+    //$('#myTable').DataTable();
+    var current = location.pathname;//acount/student-list
+    $('.navbar-nav li').each(function(){
+       // $('.navbar-nav li').removeClass("active");
+        // if the current path is like this link, make it active
+        if($(this).find("a").attr("href") == current){//}.indexOf(current) !== -1){
+            $(this).addClass('active');
+        }
+    })
+} );
+  </script>
+  <style>
+      li.nav-item.active {
+   background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+}
+  </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -49,7 +70,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white bg-gradient-primary" asp-controller="Account" asp-action="UsersList" role="tab">
+          <a class="nav-link text-white" asp-controller="Account" asp-action="UsersList" role="tab">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -126,7 +147,7 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">@ViewBag.Title</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tables</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Tables</h6>
@@ -272,7 +293,7 @@
   </main>
  <!--   Core JS Files   -->
   <script src="~/assets/js/core/popper.min.js"></script>
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
   <script src="~/assets/js/core/bootstrap.min.js"></script>
   <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="~/assets/js/plugins/smooth-scrollbar.min.js"></script>
@@ -291,6 +312,7 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="~/assets/js/material-dashboard.min.js?v=3.0.2"></script>
 
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@*
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
 </body>
 </html>

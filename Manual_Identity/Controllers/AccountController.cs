@@ -114,6 +114,7 @@ namespace Manual_Identity.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> UsersList()
         {
+            ViewBag.Title = "Users";
             var list = await UserManager.Users.ToListAsync();
            
             return View(list);
