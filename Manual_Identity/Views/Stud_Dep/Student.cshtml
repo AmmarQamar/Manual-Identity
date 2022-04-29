@@ -23,32 +23,26 @@
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="hidden" asp-for="StudentId" />
                            
-                                    <input  asp-for="StudentName" placeholder="Student Name" class="form-control">
+                                    <input  asp-for="StudentName" placeholder="Student Name" class="form-control"><br />
                                       <span asp-validation-for="StudentName"></span>
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="FatherName" placeholder="Father Name" class="form-control">
+                                    <br />
                                       <span asp-validation-for="FatherName"></span>
                                 </div>
-                                <div class="input-group input-group-outline mb-3 form-control">
+                                <div class="form-group input-group input-group-outline mb-3 ">
 
                                  @*Work Proper*@
-                                    @Html.DropDownList("CourseId",
+                                    @*@Html.DropDownList("CourseId",
                                     new SelectList(ViewBag.Courses,"CourseId","Name"),
-                                    new {@class="form-select ps-3"})
+                                    new {@class="form-select ps-3"})*@
+
+                                    <select asp-for="CourseId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Courses,"CourseId","Name"))"></select>
 
 
-                                      @* <select asp-for="CourseId" class="form-control"
-                                    asp-items="@(new SelectList(ViewBag.Courses,"CourseId","Name"))"
-                                    > </select>*@
-@*                                    <input  asp-for="CourseId" placeholder="Select Course" class="form-control">
-*@                                    @*<input  asp-for="CourseId" placeholder="Select Course" class="form-control">
-                                      <span asp-validation-for="CourseId"></span>*@
-                                      @* @Html.DropDownList("CourseId", Model.CourseId)*@
-                                        @* @Html.DropDownList("CourseId",
-                                         new SelectList(Enum.GetValues(typeof())),
-                                         "Select Course",
-                                         new { @class = "form-control form-select" })*@
+
                                 </div>
                     
                                 <div class="input-group input-group-outline mb-3">
