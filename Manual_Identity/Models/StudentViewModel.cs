@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+<<<<<<< HEAD
+=======
 using System.ComponentModel.DataAnnotations.Schema;
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
 
 namespace Manual_Identity.Models
 {
@@ -14,6 +17,14 @@ namespace Manual_Identity.Models
         [Required(ErrorMessage = "*Required")]
         public string FatherName { set; get; }
 
+<<<<<<< HEAD
+        [Required(ErrorMessage = "*Required")]
+        public int CourseId { set; get; }
+
+        [Required(ErrorMessage = "*Required")]
+        public string Address { set; get; }
+    }
+=======
         //public int CourseId { set; get; }
 
         [Required(ErrorMessage = "*Required")]
@@ -33,4 +44,5 @@ namespace Manual_Identity.Models
     //    CA
 
     //}
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
 }
