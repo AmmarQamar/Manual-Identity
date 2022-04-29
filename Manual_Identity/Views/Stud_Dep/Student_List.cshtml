@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Manual_Identity.Models.StudentViewModel>
+@{
+    ViewData["Title"] = "Student_List";
+    Layout = "~/Views/Shared/SideNavBar.cshtml";
+}
+<head>
+    <script type="text/javascript" src="~/datatable/datatables.min.js/>
+<link rel="stylesheet" type="text/css" href="~/datatable/datatables.min.css/>
+
+
+</head>
+
+<main class="main-content  mt-0">
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table id="myTable" class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Student Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Father Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Id</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                    </tr>
+                </thead>
+                   <tbody>             
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex px-2 py-1">
+                              
+                                <div class="d-flex flex-column justify-content-center">
+                                    <p class="text-xs text-secondary font-weight-bold mb-0">@item.StudentName</p>
+                                </div>
+                            </div>
+                        </td>
+                       @* <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.StudentName</p>
+                        </td>*@
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.FatherName</p>
+                        </td> 
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.CourseId</p>
+                        </td>
+                         <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.Address</p>
+                        </td>
+                      
+                        <td class="align-middle text-center text-sm">
+                            <form method="get">
+
+                               <a href="@Url.Action("Student",new { item.StudentId,item.StudentName,item.FatherName,item.CourseId,item.Address})" class="badge badge-sm bg-gradient-success">Edit</a>
+
+                            @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Edit
+                                </a>*@
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Detail
+                                </a>
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.CourseId')">
+                                    Delete
+                                </a>
+
+                            </form>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+   
+    $('#myTable').DataTable();
+</script>

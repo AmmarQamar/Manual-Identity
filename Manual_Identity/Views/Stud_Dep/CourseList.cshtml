@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Manual_Identity.Models.CourseViewModel>
+@{
+    ViewData["Title"] = "CourseList";
+    Layout = "~/Views/Shared/SideNavBar.cshtml";
+}
+
+<main class="main-content  mt-0">
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Detail</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+
+                    </tr>
+                </thead>
+                @*                    @{ int rowNo = 1;  }  *@
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex px-2 py-1">
+                              
+                                <div class="d-flex flex-column justify-content-center">
+                                    @*<h6 class="mb-0 text-sm">@item.Email</h6>*@
+                                    <p class="text-xs text-secondary font-weight-bold mb-0">@item.CourseId</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.Name</p>
+                        </td>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">@item.Details</p>
+                        </td>
+
+                        <td class="align-middle text-center text-sm">
+                            <form method="get">
+
+                               <a href="@Url.Action("Course",new { item.CourseId,item.Name,item.Details})" class="badge badge-sm bg-gradient-success">Edit</a>
+
+                            @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Edit
+                                </a>*@
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Course_Detail" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Detail
+                                </a>
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Course_Delete" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.CourseId')">
+                                    Delete
+                                </a>
+
+                            </form>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
