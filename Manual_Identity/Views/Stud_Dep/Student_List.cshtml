@@ -3,27 +3,43 @@
     ViewData["Title"] = "Student_List";
     Layout = "~/Views/Shared/SideNavBar.cshtml";
 }
+<<<<<<< HEAD
 <head>
     <script type="text/javascript" src="~/datatable/datatables.min.js/>
 <link rel="stylesheet" type="text/css" href="~/datatable/datatables.min.css/>
 
 
 </head>
+=======
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
 
 <main class="main-content  mt-0">
     <div class="card-body px-0 pb-2">
         <div class="table-responsive p-0">
+<<<<<<< HEAD
             <table id="myTable" class="table align-items-center mb-0">
+=======
+            <table class="table align-items-center mb-0">
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                 <thead>
                     <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Student Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Father Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Id</th>
+<<<<<<< HEAD
+=======
+                        @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Name</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Details</th>*@
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                     </tr>
                 </thead>
+<<<<<<< HEAD
                    <tbody>             
+=======
+                                
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -56,10 +72,17 @@
                             @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
                                     Edit
                                 </a>*@
+<<<<<<< HEAD
                                 <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
                                     Detail
                                 </a>
                                 <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.CourseId')">
+=======
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Detail
+                                </a>
+                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.StudentName')">
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                                     Delete
                                 </a>
 
@@ -71,6 +94,7 @@
                         <td>
                     </tr>
                 }
+<<<<<<< HEAD
                 </tbody>
             </table>
         </div>
@@ -79,3 +103,8 @@
    
     $('#myTable').DataTable();
 </script>
+=======
+            </table>
+        </div>
+    </div>
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27

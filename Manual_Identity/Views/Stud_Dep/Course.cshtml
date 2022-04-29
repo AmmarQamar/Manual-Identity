@@ -24,25 +24,66 @@
                                 <div class="input-group input-group-outline mb-3">
                                    <input type="hidden" asp-for="CourseId" />
                                    
+<<<<<<< HEAD
                                     <input  asp-for="Name" placeholder="Course Name" class="form-control">
                                       <span asp-validation-for="Name"></span>
                                 </div>
+=======
+                                <input  asp-for="Name" placeholder="Course Name" class="form-control">
+                                <span asp-validation-for="Name"></span>
+                              @*  @Html.DropDownList("Name",
+                                         new SelectList(Enum.GetValues(typeof(CourseName))),
+                                         "Select Course",
+                                         new { @class = "form-control form-select" })*@
+                                        </div>
+                            
+                            @*                                <tr>
+                                <td> Populating With Hardcoded Data</td>
+                                <td>
+                                @Html.DropDownList("MySkills", new List<SelectListItem>
+                                {
+                                new SelectListItem{ Text="ASP.NET MVC", Value = "1" },
+                                new SelectListItem{ Text="ASP.NET WEB API", Value = "2" },
+                                new SelectListItem{ Text="ENTITY FRAMEWORK", Value = "3" },
+
+                                })
+                                </td>
+                                </tr>*@
+
+
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                                 <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="Details" placeholder="Course Details" class="form-control">
                                       <span asp-validation-for="Details"></span>
                                 </div>
+<<<<<<< HEAD
                             
                                
+=======
+                            @if (ViewBag.Message != null && ViewBag.Message == "Exist")
+                            {
+                                    <span style="color:red;"> Same Data Already exist.</span>                      
+                            }
+
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                                 <div class="text-center">
                                     <button type="submit"  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
                                 </div>
                             </form>
                         </div>
+<<<<<<< HEAD
                       @*  <div class="card-footer text-center pt-0 px-lg-2 px-1">
                             <p class="mb-2 text-sm mx-auto">
                                 Already have an account?
                                 <a asp-controller="Account" asp-action="Login" class="text-primary text-gradient font-weight-bold">Sign in</a>
                             </p>
+=======
+                    @*  <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                        <p class="mb-2 text-sm mx-auto">
+                        Already have an account?
+                        <a asp-controller="Account" asp-action="Login" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                        </p>
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                         </div>*@
                     </div>
                 </div>
@@ -51,6 +92,18 @@
 
     </div>
 
+<<<<<<< HEAD
     <script>
  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 </script>
+=======
+    <script type="text/javascript" src="~/js/site.js"></script>
+    <script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+</script>
+@*<script>
+    <partial name="_ValidationScriptsPartial">
+    </script>*@
+>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
