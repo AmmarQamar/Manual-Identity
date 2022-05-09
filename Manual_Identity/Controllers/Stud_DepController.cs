@@ -1,13 +1,13 @@
 ﻿using Manual_Identity.Data;
 using Manual_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
-=======
+//=======
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
->>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
 
 namespace Manual_Identity.Controllers
 {
@@ -63,9 +63,9 @@ namespace Manual_Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> AdStudent(StudentViewModel model)
         {
-<<<<<<< HEAD
+//<<<<<<< HEAD
             
-=======
+//=======
             var res = _context.Students.Where(x => x.StudentName == model.StudentName &&
             x.FatherName == model.FatherName && x.CourseId == model.CourseId && x.Address == model.Address).FirstOrDefault();
             if (res != null)
@@ -74,7 +74,7 @@ namespace Manual_Identity.Controllers
                 return View("Student");
             }
 
->>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
             if (ModelState.IsValid)
             {
                 if (model.StudentId == 0)
@@ -88,11 +88,11 @@ namespace Manual_Identity.Controllers
                     _context.Entry(model).State = EntityState.Modified;
                     _context.SaveChanges();
                     return RedirectToAction("Student_List", "Stud_Dep");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 
-=======
->>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+//=======
+//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
                 }
             }
             return View("Student");
@@ -144,10 +144,10 @@ namespace Manual_Identity.Controllers
             return RedirectToAction("Student_List");
         }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-=======
->>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+//=======
+//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
         //Student Detail
         [HttpGet]
         public async Task<IActionResult> Student_Detail(int id)
@@ -178,47 +178,49 @@ namespace Manual_Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> AdCourse(CourseViewModel model)
         {
-<<<<<<< HEAD
-
-            if (ModelState.IsValid)
-            {
-        
-=======
-            var res = _context.Courses.Where(x => x.Name == model.Name && x.Details == model.Details).FirstOrDefault();
-            if (res != null)
-            {
-                ViewBag.Message = "Exist";
-                return View("Course");
-            }
-
+            //<<<<<<< HEAD
 
             if (ModelState.IsValid)
             {
 
-                if (model.CourseId == 0)
+                //=======
+                var res = _context.Courses.Where(x => x.Name == model.Name && x.Details == model.Details).FirstOrDefault();
+                if (res != null)
                 {
-                    _context.Courses.Add(model);
-                    await _context.SaveChangesAsync();
-
-                    //ViewBag.Courses = new SelectList(_context.Courses,"CourseId"); 
-                    //ViewBag.Courses = _context.Courses.ToListAsync();
->>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
-                    return RedirectToAction("CourseList", "Stud_Dep");
+                    ViewBag.Message = "Exist";
+                    return View("Course");
                 }
-                else
+
+
+                if (ModelState.IsValid)
                 {
-                    _context.Entry(model).State = EntityState.Modified;
-                    _context.SaveChanges();
-<<<<<<< HEAD
-=======
-                    //ViewBag.Courses = _context.Courses.ToList();
 
-                    //ViewBag.Courses = new SelectList(_context.Courses, "CourseId");
-                    return RedirectToAction("CourseList", "Stud_Dep");
+                    if (model.CourseId == 0)
+                    {
+                        _context.Courses.Add(model);
+                        await _context.SaveChangesAsync();
 
+                        //ViewBag.Courses = new SelectList(_context.Courses,"CourseId"); 
+                        //ViewBag.Courses = _context.Courses.ToListAsync();
+                        //>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+                        return RedirectToAction("CourseList", "Stud_Dep");
+                    }
+                    else
+                    {
+                        _context.Entry(model).State = EntityState.Modified;
+                        _context.SaveChanges();
+                        //<<<<<<< HEAD
+                        //=======
+                        //ViewBag.Courses = _context.Courses.ToList();
+
+                        //ViewBag.Courses = new SelectList(_context.Courses, "CourseId");
+                        return RedirectToAction("CourseList", "Stud_Dep");
+
+                    }
                 }
+                ModelState.Clear();
+                return View("Student");
             }
-            ModelState.Clear();
             return View("Student");
         }
 
