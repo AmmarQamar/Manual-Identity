@@ -25,8 +25,7 @@ namespace Manual_Identity.Controllers
         public IActionResult Register()
         {
             return View();
-        }
-  
+        } 
 
         [HttpPost]
         [AllowAnonymous]
@@ -45,7 +44,6 @@ namespace Manual_Identity.Controllers
                 }
                 var user = new ApplicationUser
                 {
-
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     UserName = model.UserName,
@@ -53,9 +51,6 @@ namespace Manual_Identity.Controllers
                     Gender = model.Gender,
                     PhotoPath = uniquefilename
                 };
-
-                //        if (model.Email == "")
-                //      {
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -67,7 +62,6 @@ namespace Manual_Identity.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-
             return View(model);
         }
     
@@ -119,34 +113,6 @@ namespace Manual_Identity.Controllers
            
             return View(list);
         }
-
-        /*
-                private async Task LoadAsync(ApplicationUser user, IFormFile img)
-                {
-                    var userName = await UserManager.GetUserNameAsync(user);
-                    //var phoneNumber = await UserManager.GetPhoneNumberAsync(user);
-
-                    Username = userName;
-                    string uniquefilename = null;
-                    //    string stringFileName = UploadFile(model);  
-                    if (img != null)
-                    {
-                        string uploadsfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
-                        uniquefilename = Guid.NewGuid().ToString() + "_" + img.FileName;
-                        string filePath = Path.Combine(uploadsfolder, uniquefilename);
-                        img.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
-                    var userobj = new ApplicationUser
-                    {
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Gender = user.Gender,
-                        PhotoPath = uniquefilename
-                    };
-
-                }
-                //}
-        */
         //Edit
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
@@ -154,9 +120,7 @@ namespace Manual_Identity.Controllers
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
-                //  ViewBag.Error =$"User with Id ={id} not found"
-                //      return NotFound($"Unable to load user with ID '{UserManager.GetUserId(User)}'.");
-                return View("NotFound");
+               return View("NotFound");
             }
             var model = new RegisterViewModel
             {
@@ -193,7 +157,6 @@ namespace Manual_Identity.Controllers
             user.Gender = model.Gender;
             user.UserName = model.UserName;
             user.PhotoPath = imge == null ? user.PhotoPath : uniquefilename;
-
             var result = await UserManager.UpdateAsync(user);
             if (result.Succeeded)
             {
@@ -203,9 +166,7 @@ namespace Manual_Identity.Controllers
             {
                 ModelState.AddModelError("", error.Description);
             }
-
             return View(model);
-
         }
 
 
@@ -249,8 +210,6 @@ namespace Manual_Identity.Controllers
             }
 
         }
-
-
 
     }
 }

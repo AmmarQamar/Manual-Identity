@@ -128,12 +128,11 @@
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Father Name:</strong> &nbsp;@Model.FatherName</li>
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp;@Model.Email</li>
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Course Id:</strong> &nbsp; @Model.CourseId</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Admission Date:</strong> &nbsp; @Model.AdmissionDate</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Admission Year:</strong> &nbsp; @Model.AdmissionYear</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Admission Month:</strong> &nbsp; @Model.Month</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Admission Year:</strong> &nbsp; @Model.Year</li>
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address:</strong> &nbsp; @Model.Address</li>
                     <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Contact:</strong> &nbsp; @Model.ContactNo</li>
-@*                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
-*@                    <li class="list-group-item border-0 ps-0 pb-0">
+                    <li class="list-group-item border-0 ps-0 pb-0">
                       <strong class="text-dark text-sm">Social:</strong> &nbsp;
                       <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
                         <i class="fab fa-facebook fa-lg"></i>
@@ -149,7 +148,7 @@
                 </div>
                 <div class="text-center">
                     <form method="get">
-                                    <button type="submit" asp-controller="Account" asp-action="UsersList" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
                                 </form></div>
               </div>
             </div>

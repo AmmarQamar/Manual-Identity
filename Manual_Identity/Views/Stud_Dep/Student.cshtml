@@ -40,13 +40,13 @@
                                  <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="AdmissionDate" placeholder="Date of Admission" class="form-control">
                                     <br />
-                                      <span asp-validation-for="AdmissionDate"></span>
+                                      @*<span asp-validation-for="AdmissionDate"></span>*@
                                 </div>
-                                 <div class="input-group input-group-outline mb-3">
+                               @*  <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="AdmissionYear" placeholder="Year of Admission" class="form-control">
                                     <br />
                                       <span asp-validation-for="AdmissionYear"></span>
-                                </div>
+                                </div>*@
                                 <div class="form-group input-group input-group-outline mb-3 ">
 
                                 @*Work Proper*@
@@ -80,8 +80,15 @@
 
                                 <div class="text-center">
                                     <button type="submit" asp-controller="Stud_Dep" asp-action="AdStudent" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
+                                    <button type="submit" asp-controller="Account"  formmethod="get asp-action="dashboard" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Back</button>
+   
                                 </div>
                             </form>
+                                    @*<div class="text-center">
+                    <form method="get">
+                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                </form></div>*@
+                               
                         </div>
 
                     </div>

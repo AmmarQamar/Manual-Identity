@@ -93,6 +93,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Identity_Scratch_ProfDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,7 +112,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
-    <EmbeddedResource Include="StudentReport.rdlc" />
+    <Content Include="StudentReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Identity_Scratch_ProfDataSet.xsc">
+      <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Identity_Scratch_ProfDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Identity_Scratch_ProfDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Identity_Scratch_ProfDataSet.xss">
+      <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Student.datasource" />
     <None Include="Properties\Settings.settings">

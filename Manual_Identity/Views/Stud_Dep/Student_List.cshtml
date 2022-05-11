@@ -14,74 +14,79 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Father Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Id</th>
                         @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Name</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Details</th>*@
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Details</th>*@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                     </tr>
                 </thead>
-                                
+
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                              
-                                <div class="d-flex flex-column justify-content-center">
-                                    <p class="text-xs text-secondary font-weight-bold mb-0">@item.StudentName</p>
-                                </div>
-                            </div>
-                        </td>
-                       @* <td>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs text-secondary font-weight-bold mb-0">@item.StudentName</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                        @* <td>
                             <p class="text-xs font-weight-bold mb-0">@item.StudentName</p>
-                        </td>*@
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">@item.FatherName</p>
-                        </td> 
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">@item.CourseId</p>
-                        </td>
-                         <td>
-                            <p class="text-xs font-weight-bold mb-0">@item.Address</p>
-                        </td>
-                      
-                        <td class="align-middle text-center text-sm">
-                            <form method="get">
+                            </td>*@
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.FatherName</p>
+                                    </td> 
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.CourseId</p>
+                                    </td>
+                                     <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.Address</p>
+                                    </td>
 
-                               <a href="@Url.Action("Student",new { item.StudentId,item.StudentName,item.FatherName,item.CourseId,item.Address})" class="badge badge-sm bg-gradient-success">Edit</a>
+                                    <td class="align-middle text-center text-sm">
+                                        <form method="get">
 
-                            @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
+                                           <a href="@Url.Action("Student",new { item.StudentId,item.StudentName,item.FatherName,item.CourseId,item.Address})" class="badge badge-sm bg-gradient-success">Edit</a>
+
+                                @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
                                     Edit
-                                </a>*@
-                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
-                                    Detail
-                                </a>
-                                <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.StudentName')">
-                                    Delete
-                                </a>
-                                 <a class="badge badge-sm bg-gradient-success printBtn" asp-action="JoinTable" asp-route-id="@item.StudentId" data-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
-                                    Print
-                                </a>
+                                    </a>*@
+                                            <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                                Detail
+                                            </a>
+                                            <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.StudentName')">
+                                                Delete
+                                            </a>
+                                             <a class="badge badge-sm bg-gradient-success printBtn" target=”_blank” asp-controller="Home" asp-action="printreport" asp-route-id="@item.StudentId" data-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                                Report
+                                            </a>
 
-                            </form>
-                        </td>
+                                        </form>
+                                    </td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                    </tr>
+                                </tr>
+                                <tr>
+                                    <td>
+                                </tr>
                 }
             </table>
+                             <div class="text-center">
+                    <form method="get">
+                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                </form></div>
+              </div>
         </div>
     </div>
-    <script type="text/javascript">
-    $(".printBtn").click(function(e){
+  @*  <script type="text/javascript">
+    $(".printBtn").click(function(e)
+    {
         e.preventDefault();
-
-    var ID = $(this).attr('data-id');
-    var url=$(this).attr("href");
-    var filename = this.innerHTML;
-    var urlPath = this.attributes[2].nodeValue;
-    if (urlPath == '#') {
+        var ID = $(this).attr('data-id');
+        var url=$(this).attr("href");
+        var filename = this.innerHTML;
+        var urlPath = this.attributes[2].nodeValue;
+        if (urlPath == '#') {
         urlPath = this.attributes[3].nodeValue;
     }
     debugger;
@@ -97,11 +102,11 @@
                 saveByteArray(filename, bytes);
                 var blob = new Blob([bytes], { type: data.type });
                 var fileURL = URL.createObjectURL(blob);
-  
-  
+
+
             }
         }
     });
 
     });
-    </script>
+    </script>*@
