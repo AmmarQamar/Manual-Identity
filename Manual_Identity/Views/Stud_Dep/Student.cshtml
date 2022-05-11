@@ -19,54 +19,95 @@
                             <h4 class="font-weight-bolder">Add Student</h4>
                         </div>
                         <div class="card-body">
-                            <form method="post" asp-action="AdStudent">
+                            <form method="post" asp-action="AdStudent" enctype="multipart/form-data">
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="hidden" asp-for="StudentId" />
-                           
+                                    <input type="hidden" asp-for="PhotoPath" value=""/>
+
                                     <input  asp-for="StudentName" placeholder="Student Name" class="form-control"><br />
                                       <span asp-validation-for="StudentName"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="Email" placeholder="Email" class="form-control">
+                                    <br />
+                                      <span asp-validation-for="Email"></span>
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="FatherName" placeholder="Father Name" class="form-control">
                                     <br />
                                       <span asp-validation-for="FatherName"></span>
                                 </div>
+                                 <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="AdmissionDate" placeholder="Date of Admission" class="form-control">
+                                    <br />
+                                      <span asp-validation-for="AdmissionDate"></span>
+                                </div>
+                                 <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="AdmissionYear" placeholder="Year of Admission" class="form-control">
+                                    <br />
+                                      <span asp-validation-for="AdmissionYear"></span>
+                                </div>
                                 <div class="form-group input-group input-group-outline mb-3 ">
 
-                                 @*Work Proper*@
-                                    @*@Html.DropDownList("CourseId",
+                                @*Work Proper*@
+                                @*@Html.DropDownList("CourseId",
                                     new SelectList(ViewBag.Courses,"CourseId","Name"),
                                     new {@class="form-select ps-3"})*@
 
                                     <select asp-for="CourseId" class="form-control"
                                     asp-items="@(new SelectList(ViewBag.Courses,"CourseId","Name"))"></select>
 
-
-
                                 </div>
-                    
+
                                 <div class="input-group input-group-outline mb-3">
                                     <input  asp-for="Address" placeholder="Address" class="form-control">
                                       <span asp-validation-for="Address"></span>
                                 </div>
-                                 @if (ViewBag.Message != null && ViewBag.Message == "Exist")
-                            {
-                                    <span style="color:red;"> Same Data Already exist.</span>                      
-                            }
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="ContactNo" placeholder="Contact No" class="form-control">
+                                      <span asp-validation-for="ContactNo"></span>
+                                </div> 
                                
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="file" name="img" class="form-control" onChange="previewFile(this)" />
+                                <img id="imgPreview" src="#" alt="pic" style="height: 50px; margin-left: 5px; margin-top: 9px;width: 40%; display:none;border-radius:7px;" />
+                                </div>
+
+                            @if (ViewBag.Message != null && ViewBag.Message == "Exist")
+                            {
+                                        <span style="color:red;"> Same Data Already exist.</span>                      
+                            }
+
                                 <div class="text-center">
                                     <button type="submit" asp-controller="Stud_Dep" asp-action="AdStudent" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
                                 </div>
                             </form>
                         </div>
-                   
+
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-
     <script>
- @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        
+
+     function previewFile(input)
+     {
+        var file = $("input[type=file]").get(0).files[0];
+        if(file)
+        {
+         var s=URL.createObjectURL(file);
+         $("#imgPreview").show();
+         $("#imgPreview").attr("src", s);
+        }
+    }
+
+
+</script>
+    <script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 </script>

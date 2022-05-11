@@ -58,6 +58,9 @@
                                 <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.StudentName')">
                                     Delete
                                 </a>
+                                 <a class="badge badge-sm bg-gradient-success printBtn" asp-action="JoinTable" asp-route-id="@item.StudentId" data-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                    Print
+                                </a>
 
                             </form>
                         </td>
@@ -70,3 +73,35 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+    $(".printBtn").click(function(e){
+        e.preventDefault();
+
+    var ID = $(this).attr('data-id');
+    var url=$(this).attr("href");
+    var filename = this.innerHTML;
+    var urlPath = this.attributes[2].nodeValue;
+    if (urlPath == '#') {
+        urlPath = this.attributes[3].nodeValue;
+    }
+    debugger;
+    var urlPrv = $('#urldownload').data('request-url');
+    $.ajax({
+        type: "Get",
+        url: url, // do not hard code your url's
+        data: { 'fileLeafRef': filename, 'ID': ID, 'SitePath': urlPath, 'FileUrl': urlPath, 'DeptSiteColID': $("#DeptSiteColID").val(), 'staffID': $("#hdnStaffID").val() },
+        success: function (data, jqXHR, response) {
+            debugger;
+            if (jqXHR == jqXHR) {
+                var bytes = _base64ToArrayBuffer(data.message);
+                saveByteArray(filename, bytes);
+                var blob = new Blob([bytes], { type: data.type });
+                var fileURL = URL.createObjectURL(blob);
+  
+  
+            }
+        }
+    });
+
+    });
+    </script>

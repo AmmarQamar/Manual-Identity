@@ -109,6 +109,14 @@
             </div>
             <span class="nav-link-text ms-1">CourseList</span>
           </a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link text-white" asp-controller="Stud_Dep" asp-action="JoinTable" role="tab">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+             <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Join</span>
+          </a>
         </li>
 
       @*  <li class="nav-item">
@@ -279,7 +287,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Table</h6>
+                <h6 class="text-white text-capitalize ps-3">@ViewBag.title</h6>
               </div>
             </div>
            

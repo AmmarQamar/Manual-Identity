@@ -1,52 +1,23 @@
 ﻿using Manual_Identity.Data;
 using Manual_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
-//<<<<<<< HEAD
-using Microsoft.EntityFrameworkCore;
-//=======
+
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
+
 
 namespace Manual_Identity.Controllers
 {
     public class Stud_DepController : Controller
     {
         private readonly AppDbContext _context;
-        //List<StudentViewModel> student=new List<StudentViewModel>();
-        //List<CourseViewModel> course = new List<CourseViewModel>();
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        //public async Task<IActionResult> JoinTable()
-        //{
-        //    List<CourseViewModel> courses = _context.Courses.ToList();
-        //    List<StudentViewModel> students = _context.Students.ToList(; 
-        //    var join_table = from course in _context.Courses
-        //                    from student in _context.Students
-        //                    where student.CourseId == course.CourseId
-        //                    select new 
-        //                    {
-        //                        //StudentId = student.StudentId,
-        //                        StudentName = student.StudentName,
-        //                        FatherName = student.FatherName,
-        //                        CourseId = course.CourseId,
-        //                        Name = course.Name,
-        //                        Details = course.Details,
-        //                        Address = student.Address,
-
-        //                    };
-        //    return View(join_table);
-
-        //    //var StudentViewModel = from s in student
-        //    //                       join c in course on s.CourseId equals c.CourseId into st2
-        //    //                       from c in st2.DefaultIfEmpty()
-        //    //                       select new StudentViewModel { studentVm = s, studentAdditionalInfoVm = st };
-        //    //return View(studentViewModel);
-        //}
-
-        public Stud_DepController(AppDbContext _context)
+        public Stud_DepController(AppDbContext _context,IWebHostEnvironment webHostEnvironment)
         {
             this._context = _context;
+            this.webHostEnvironment = webHostEnvironment;
         }
         // Student
         [HttpGet]
@@ -57,11 +28,9 @@ namespace Manual_Identity.Controllers
             return View(model);
         }
 
-
-
         //Add or Edit Student
         [HttpPost]
-        public async Task<IActionResult> AdStudent(StudentViewModel model)
+        public async Task<IActionResult> AdStudent(StudentViewModel model,IFormFile img)
         {
 //<<<<<<< HEAD
             
@@ -77,6 +46,25 @@ namespace Manual_Identity.Controllers
 //>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
             if (ModelState.IsValid)
             {
+                model.Year = model.AdmissionDate.Year;
+                model.Month = model.AdmissionDate.Month;
+                string uniquefilename = string.Empty;
+                if(img!=null)
+                {
+                    string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
+                    uniquefilename = Guid.NewGuid().ToString() + "_" + img.FileName;
+                    string filepath=Path.Combine(uploadfolder, uniquefilename);
+                    img.CopyTo(new FileStream(filepath, FileMode.Create));
+                    model.PhotoPath = uniquefilename;
+                }
+                //model.AdmissionYear = year;
+                //DateTime dt = new DateTime();
+                
+                ////DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+
+
+                //model.AdmissionDate = String.Format("{0:d dd ddd dddd}", dt); 
+
                 if (model.StudentId == 0)
                 {
                     _context.Students.Add(model);
@@ -125,9 +113,44 @@ namespace Manual_Identity.Controllers
                     Courses_details = c,
                     Students_details = s
                 };
-            return View(stdlist);
+
+            var html = "this is my html";
+            var pdfBytes = PdfSharpConvert(html);
+            return Json(new { filename = "myFile.pdf", message = Convert.ToBase64String(pdfBytes) });
+
+            //return View(stdlist);
        
         }
+        private Byte[] PdfSharpConvert(String html)
+        {
+            Byte[] res = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var pdf = TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
+                pdf.Save(ms);
+                res = ms.ToArray();
+            }
+            return res;
+        }
+        //public IActionResult reportshow()
+        //{
+        //    List<CourseViewModel> courses = _context.Courses.ToList();
+        //    List<StudentViewModel> students = _context.Students.ToList();
+        //    var stdlist =
+        //        from s in students
+        //        from c in courses
+        //        where s.CourseId == c.CourseId
+        //        select new JoinModel
+        //        select new JoinModel
+        //        {
+        //            Courses_details = c,
+        //            Students_details = s
+        //        };
+        //    return View(stdlist);
+
+        //}
+
+
 
         //Student Delete
         [HttpGet]
@@ -144,10 +167,7 @@ namespace Manual_Identity.Controllers
             return RedirectToAction("Student_List");
         }
 
-//<<<<<<< HEAD
 
-//=======
-//>>>>>>> 0ab365ef4b88f303d38a71dfe6eba7c3d22a4e27
         //Student Detail
         [HttpGet]
         public async Task<IActionResult> Student_Detail(int id)
@@ -159,10 +179,15 @@ namespace Manual_Identity.Controllers
             {
                 StudentId = student.StudentId,
                 StudentName = student.StudentName,
+                Email = student.Email,
                 FatherName = student.FatherName,
                 CourseId = student.CourseId,
-                Address = student.Address
-            });
+                Address = student.Address,
+                ContactNo = student.ContactNo,
+                AdmissionDate=student.AdmissionDate,
+                AdmissionYear=student.AdmissionYear,
+                PhotoPath=student.PhotoPath,
+            }); 
 
         }
 
