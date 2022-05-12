@@ -641,7 +641,8 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-  <Code />
+  <Code>
+ConsumeContainerWhiteSpace = true</Code>
   <EmbeddedImages>
     <EmbeddedImage Name="SiteLogopvt">
       <MIMEType>image/png</MIMEType>
