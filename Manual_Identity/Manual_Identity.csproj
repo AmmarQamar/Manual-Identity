@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\Reports\ReportStudent.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Reports\StudentReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

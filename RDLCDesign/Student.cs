@@ -34,5 +34,12 @@ namespace RDLCDesign
         public string Email { get; set; }
 
         public string PhotoPath { get; set; }
+
+        public int Month { get; set; }
+
+        public int Year { get; set; }
+
+        [Required]
+        public string CourseName { get; set; }
     }
 }

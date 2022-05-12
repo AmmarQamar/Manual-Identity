@@ -13,36 +13,6 @@
           </Border>
         </Style>
       </Line>
-      <Textbox Name="StudentName1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!StudentName.Value</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>StudentName1</rd:DefaultName>
-        <Top>1.62186cm</Top>
-        <Left>13.67965cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.16146cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox21">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -64,7 +34,7 @@
         <Left>6.69272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -80,7 +50,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -108,37 +78,7 @@
         <Left>6.69272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>4</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="FatherName1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!FatherName.Value, "Student")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>FatherName1</rd:DefaultName>
-        <Top>2.8573cm</Top>
-        <Left>13.67965cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.16146cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -154,7 +94,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -182,7 +122,7 @@
         <Left>6.69272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -198,7 +138,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -226,37 +166,7 @@
         <Left>6.69272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>9</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Email1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!Email.Value, "Student")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Email1</rd:DefaultName>
-        <Top>4.29415cm</Top>
-        <Left>13.67965cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.16146cm</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -272,7 +182,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -286,7 +196,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Course :</Value>
+                <Value>Course Name:</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -300,71 +210,7 @@
         <Left>6.69272cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>12</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Year1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Sum(Fields!Year.Value, "Student")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Year1</rd:DefaultName>
-        <Top>5.78904cm</Top>
-        <Left>13.67965cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.16145cm</Width>
-        <ZIndex>13</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="CourseId1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Sum(Fields!CourseId.Value, "Student")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>CourseId1</rd:DefaultName>
-        <Top>6.96252cm</Top>
-        <Left>13.67965cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.16145cm</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -380,7 +226,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -408,39 +254,7 @@
         <Left>6.69273cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
-        <ZIndex>16</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Address">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!Address.Value, "Student")</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Address</rd:DefaultName>
-        <Top>8.34228cm</Top>
-        <Left>13.78356cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.05756cm</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -456,7 +270,7 @@
         <Left>13.28471cm</Left>
         <Height>0cm</Height>
         <Width>3.8739cm</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -484,6 +298,190 @@
         <Left>6.69273cm</Left>
         <Height>0.6cm</Height>
         <Width>3.39958cm</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="StudentName">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!StudentName.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>StudentName</rd:DefaultName>
+        <Top>1.5513cm</Top>
+        <Left>13.67578cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.48283cm</Width>
+        <ZIndex>14</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Email">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Email.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Email</rd:DefaultName>
+        <Top>4.33312cm</Top>
+        <Left>13.67578cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.48283cm</Width>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="FatherName1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!FatherName.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>FatherName1</rd:DefaultName>
+        <Top>2.89257cm</Top>
+        <Left>13.67966cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.47895cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Year">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!Year.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Year</rd:DefaultName>
+        <Top>5.63562cm</Top>
+        <Left>13.67578cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.48283cm</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="CourseName">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!CourseName.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>CourseName</rd:DefaultName>
+        <Top>6.9978cm</Top>
+        <Left>13.67966cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.47895cm</Width>
+        <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="ContactNo">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!ContactNo.Value, "StudentReport_J")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ContactNo</rd:DefaultName>
+        <Top>9.7102cm</Top>
+        <Left>13.67966cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.47895cm</Width>
         <ZIndex>19</ZIndex>
         <Style>
           <Border>
@@ -495,25 +493,25 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="FatherName2">
+      <Textbox Name="Address">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!ContactNo.Value</Value>
+                <Value>=First(Fields!Address.Value, "StudentReport_J")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>FatherName1</rd:DefaultName>
-        <Top>9.83582cm</Top>
-        <Left>13.67966cm</Left>
+        <rd:DefaultName>Address</rd:DefaultName>
+        <Top>8.1227cm</Top>
+        <Left>13.67578cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.16146cm</Width>
+        <Width>3.48283cm</Width>
         <ZIndex>20</ZIndex>
         <Style>
           <Border>
@@ -526,7 +524,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>4.19294in</Height>
+    <Height>5.22419in</Height>
     <Style />
   </Body>
   <Width>9.44693in</Width>
@@ -574,11 +572,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>88b7d57f-75fe-40ae-bc56-2111efa364e5</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="Identity_Scratch_ProfDataSet1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>79b82812-39be-4736-883d-44dfd34caf32</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="Student">
+    <DataSet Name="StudentReport_J">
       <Query>
-        <DataSourceName>RDLCDesign</DataSourceName>
+        <DataSourceName>Identity_Scratch_ProfDataSet1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -630,10 +635,14 @@
           <DataField>Year</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CourseName">
+          <DataField>CourseName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Identity_Scratch_ProfDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Huzaifa\source\repos\Manual Identity\Manual_Identity(26 12pm CURD done)\Manual_Identity\RDLCDesign\Identity_Scratch_ProfDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>Identity_Scratch_ProfDataSet1</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Huzaifa\source\repos\Manual Identity\Manual_Identity(26 12pm CURD done)\Manual_Identity\RDLCDesign\Identity_Scratch_ProfDataSet1.xsd</rd:SchemaPath>
         <rd:TableName>Students</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

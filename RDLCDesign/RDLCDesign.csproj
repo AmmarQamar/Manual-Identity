@@ -98,7 +98,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Identity_Scratch_ProfDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Identity_Scratch_ProfDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model1.cs" />
+    <Compile Include="Model2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
@@ -115,6 +121,10 @@
     <Content Include="StudentReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Report2.rdlc" />
+    <Content Include="ReportStudent.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Identity_Scratch_ProfDataSet.xsc">
       <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
     </None>
@@ -126,7 +136,19 @@
     <None Include="Identity_Scratch_ProfDataSet.xss">
       <DependentUpon>Identity_Scratch_ProfDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Identity_Scratch_ProfDataSet1.xsc">
+      <DependentUpon>Identity_Scratch_ProfDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Identity_Scratch_ProfDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Identity_Scratch_ProfDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Identity_Scratch_ProfDataSet1.xss">
+      <DependentUpon>Identity_Scratch_ProfDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Cours.datasource" />
     <None Include="Properties\DataSources\Student.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

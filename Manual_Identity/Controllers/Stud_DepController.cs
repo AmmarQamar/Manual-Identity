@@ -42,6 +42,13 @@ namespace Manual_Identity.Controllers
             {
                 model.Year = model.AdmissionDate.Year;
                 model.Month = model.AdmissionDate.Month;
+                List<StudentViewModel> students = _context.Students.ToList();
+                List<CourseViewModel> courses = _context.Courses.ToList();
+               
+
+
+
+
                 string uniquefilename = string.Empty;
                 if(img!=null)
                 {
@@ -53,6 +60,29 @@ namespace Manual_Identity.Controllers
                 }
                 if (model.StudentId == 0)
                 {
+                //    var stdlist =
+                //   from s in students
+                //   join c in courses
+                //   //where c.CourseId == s.CourseId
+                //   on s.CourseId equals c.CourseId
+                //   into Stu_Cou
+                //   from c in Stu_Cou.DefaultIfEmpty()
+                //   select new StudentViewModel
+                //   {
+                //       StudentId = s.StudentId,
+                //       StudentName=s.StudentName,
+                //       FatherName=s.FatherName,
+                //       CourseId=s.CourseId,
+                //       CourseName = c.Name,
+                //       Email=s.Email,
+                //       Address=s.Email,
+                //       Year = model.AdmissionDate.Year,
+                //       Month = model.AdmissionDate.Month,
+                //       AdmissionDate=model.AdmissionDate,
+                //       ContactNo=s.ContactNo,
+                //       PhotoPath = uniquefilename,
+
+                //};
                     _context.Students.Add(model);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Student_List", "Stud_Dep");

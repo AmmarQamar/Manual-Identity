@@ -34,6 +34,8 @@ namespace Manual_Identity.Models
         public int Year { get; set; }
         public int Month { get; set; }
 
+        public string? CourseName { get; set; }
+
 
         [Required(ErrorMessage = "*Required")]
         public string Address { set; get; }
