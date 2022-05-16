@@ -3,6 +3,7 @@ using Manual_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SelectPdf;
 using System.Linq;
 
 
@@ -44,11 +45,7 @@ namespace Manual_Identity.Controllers
                 model.Month = model.AdmissionDate.Month;
                 List<StudentViewModel> students = _context.Students.ToList();
                 List<CourseViewModel> courses = _context.Courses.ToList();
-               
-
-
-
-
+              
                 string uniquefilename = string.Empty;
                 if(img!=null)
                 {
@@ -107,7 +104,6 @@ namespace Manual_Identity.Controllers
         [HttpGet]
         public async Task<IActionResult> Student_Delete(int id)
         {
-
             var stud = await _context.Students.FindAsync(id);
             if (stud == null) { return NotFound(); }
             else
@@ -118,7 +114,6 @@ namespace Manual_Identity.Controllers
             return RedirectToAction("Student_List");
         }
 
-
         //Student Detail
         [HttpGet]
         public async Task<IActionResult> Student_Detail(int id)
@@ -126,31 +121,56 @@ namespace Manual_Identity.Controllers
             if (id == null) { return NotFound(); }
             var student = await _context.Students.FindAsync(id);
             if (student == null) { return View("NoFound"); }
-            return View(new StudentViewModel
-            {
-                StudentId = student.StudentId,
-                StudentName = student.StudentName,
-                Email = student.Email,
-                FatherName = student.FatherName,
-                CourseId = student.CourseId,
-                Address = student.Address,
-                ContactNo = student.ContactNo,
-                Year = student.AdmissionDate.Year,
-                Month = student.AdmissionDate.Month,
-               //AdmissionDate=student.AdmissionDate,
-               //AdmissionYear=student.AdmissionYear,
-                PhotoPath =student.PhotoPath,
-            }); 
 
+            List<StudentViewModel> students = _context.Students.ToList();
+            List<CourseViewModel> courses=_context.Courses.ToList();
+            var StudentViewModel = from s in students
+                         join c in courses
+                         on s.CourseId equals c.CourseId where s.StudentId==id
+
+                         select new StudentViewModel
+                         { 
+
+                             //Courses_details = c,
+                             //Students_details = s,
+                             StudentId = student.StudentId,
+                             StudentName = student.StudentName,
+                             Email = student.Email,
+                             FatherName = student.FatherName,
+                             CourseId = student.CourseId,
+                             CourseName = c.Name,
+                             Address = student.Address,
+                             ContactNo = student.ContactNo,
+                             Year = student.AdmissionDate.Year,
+                             Month = student.AdmissionDate.Month,
+                             PhotoPath = student.PhotoPath,
+                         };
+            return View(StudentViewModel);
+
+
+
+            //return View(new StudentViewModel
+            //{
+            //    StudentId = student.StudentId,
+            //    StudentName = student.StudentName,
+            //    Email = student.Email,
+            //    FatherName = student.FatherName,
+            //    CourseId = student.CourseId,
+            //    CourseName = 
+            //    Address = student.Address,
+            //    ContactNo = student.ContactNo,
+            //    Year = student.AdmissionDate.Year,
+            //    Month = student.AdmissionDate.Month,
+            //    //AdmissionDate=student.AdmissionDate,
+            //    //AdmissionYear=student.AdmissionYear,
+            //    PhotoPath = student.PhotoPath,
+            //});
         }
-
 
         //Course
         [HttpGet]
         public async Task<IActionResult> Course(CourseViewModel model)
-        {
-            return View(model);
-        }
+        {  return View(model); }
 
         //Add or Edit Course
         [HttpPost]
@@ -251,6 +271,35 @@ namespace Manual_Identity.Controllers
             return View(stdlist);
 
         }
+
+        public IActionResult GeneratePdf(string html)
+        {
+            
+            HtmlToPdf converter = new HtmlToPdf();
+            PdfDocument doc = new PdfDocument();
+          
+            PdfFont font = doc.AddFont(PdfStandardFont.Helvetica);
+            font.Size = 22;
+            //PdfPage page = doc.AddPage(PdfCustomPageSize.A4,
+            //    new PdfMargins(0f), PdfPageOrientation.Portrait);
+
+            converter.Options.PdfPageSize = PdfPageSize.A4;
+            converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
+            //converter.Options.MarginLeft = 30;
+            //converter.Options.MarginRight = 0;
+            converter.Options.MarginTop = 50;
+            //converter.Options.MarginBottom = 0;
+
+            html = html.Replace("start", "<").Replace("end", ">");
+            doc = converter.ConvertHtmlString(html);
+            //PdfDocument doc = converter.ConvertUrl("https://localhost:7070/Stud_Dep/JoinTable");
+            //doc.Save($"{AppDomain.CurrentDomain.BaseDirectory}\report.pdf");
+            byte[] pdfFile = doc.Save();
+            doc.Close();
+            return File(pdfFile, "application/pdf");
+        }
+
+
         //private Byte[] PdfSharpConvert(String html)
         //{
         //    Byte[] res = null;
@@ -262,23 +311,7 @@ namespace Manual_Identity.Controllers
         //    }
         //    return res;
         //}
-        //public IActionResult reportshow()
-        //{
-        //    List<CourseViewModel> courses = _context.Courses.ToList();
-        //    List<StudentViewModel> students = _context.Students.ToList();
-        //    var stdlist =
-        //        from s in students
-        //        from c in courses
-        //        where s.CourseId == c.CourseId
-        //        select new JoinModel
-        //        select new JoinModel
-        //        {
-        //            Courses_details = c,
-        //            Students_details = s
-        //        };
-        //    return View(stdlist);
 
-        //}
 
 
 

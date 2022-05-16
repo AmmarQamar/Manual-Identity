@@ -4,8 +4,8 @@
         Layout = "~/Views/Shared/SideNavBar.cshtml";
     }
 
-    <main class="main-content  mt-0">
-        <div class="card-body px-0 pb-2">
+    <main class="main-content  mt-0" >
+        <div class="card-body px-0 pb-2" id="joinpdf">
             <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                     <thead>
@@ -15,12 +15,8 @@
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Id</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Name</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Details</th>
-                            @*                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
-                            *@
                         </tr>
                     </thead>
-
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -53,3 +49,21 @@
                 </table>
             </div>
         </div>
+        </main>
+        <button id="joinbtnpdf" class="btn btn-primary">PDF</button>
+        <script type="text/javascript">
+    $("#joinbtnpdf").click(function()
+    {
+        debugger;
+       //  var current = location.pathname;
+       //  alert("aamar");
+
+       // var html=$("#joinpdf").html();
+       //html=html.replace(/</g,"start").replace(/>/g,"end");
+
+       // window.open("/Stud_Dep/GeneratePdf?html="+html,"_blank");
+        window.open("/Stud_Dep/GeneratePdf","_blank");
+    
+    });
+</script>
+

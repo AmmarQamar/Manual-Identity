@@ -1,8 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
-<div class="text-center">
+<div class="text-center" id="divMainBody">
     <h1 class="display-4">Welcome</h1>
+    <h2>pdf work proper</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+    <button class="btn btn-primary" id="btnGenerate">PDF Generate</button>
+
+<script type="text/javascript">
+    $("#btnGenerate").click(function()
+    {
+        debugger;
+        alert("aamar");
+        var html=$(".layoutpdf").html();
+       html=html.replace(/</g,"start").replace(/>/g,"end");
+
+        window.open("/Home/GeneratePdf?html="+html,"_blank");
+    });
+</script>

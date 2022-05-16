@@ -1,0 +1,153 @@
+﻿@model Manual_Identity.Models.StudentViewModel
+
+@{
+    ViewData["Title"] = "Student_DetailP";
+}    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*
+
+
+<div id="studentrecordpdf" style="margin-top:50px;display:none;">
+    <div style="width:300px!important;height:200px!important;">
+          <img src="https://localhost:7070/image/@Model.PhotoPath" alt="profile_image" style="width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-left: 420px;
+    margin-bottom: 30px;" >
+    </div>
+             
+
+
+    <table style="margin-left:300px;padding:30px;width:600px;">
+       
+         <tr >
+            <th style="padding:20px;text-align:left"> Student Name </th>
+            <td style="padding:20px 50px"> @Model.StudentName</td>
+         </tr> 
+        <tr>
+            <th style="padding:20px;text-align:left"> Father Name </th>
+            <td style="padding:20px 50px"> @Model.FatherName</td>
+        </tr>
+          <tr>
+            <th style="padding:20px;text-align:left"> Email </th>
+            <td style="padding:20px 50px"> @Model.Email</td>
+        </tr> 
+        <tr >
+            <th style="padding:20px;text-align:left"> Course Name </th>
+            <td style="padding:20px 50px"> @Model.CourseName</td>
+        </tr>
+        <tr>
+            <th style="padding:20px;text-align:left"> Admission Year </th>
+            <td style="padding:20px 50px"> @Model.Year</td>
+        </tr> 
+        <tr>
+            <th style="padding:20px;text-align:left"> Admission Month </th>
+            <td style="padding:20px 50px"> @Model.Month</td>
+        </tr> 
+        <tr>
+            <th style="padding:20px;text-align:left"> Address </th>
+            <td style="padding:20px 50px"> @Model.Address</td>
+        </tr>
+        <tr>
+            <th style="padding:20px;text-align:left"> Contact No </th>
+            <td style="padding:20px 50px"> @Model.ContactNo</td>
+        </tr>
+
+      
+    </table>
+
+   @* <h4>StudentViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StudentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FatherName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FatherName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdmissionDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdmissionDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdmissionYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdmissionYear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhotoPath)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhotoPath)
+        </dd>
+    </dl>*@
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.StudentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+        <button id="stdetailbtnpdf" class="btn btn-primary">PDF</button>
+
+
+ <script type="text/javascript">
+    $("#stdetailbtnpdf").click(function()
+    {
+       
+
+        var html=$("#studentrecordpdf").html();
+       html=html.replace(/</g,"start").replace(/>/g,"end");
+        window.open("/Stud_Dep/GeneratePdf?html="+html,"_blank");
+
+    });
+</script>

@@ -3,6 +3,7 @@
     ViewData["Title"] = "Student_List";
     Layout = "~/Views/Shared/SideNavBar.cshtml";
 }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <main class="main-content  mt-0">
     <div class="card-body px-0 pb-2">
@@ -13,8 +14,6 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Student Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Father Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Id</th>
-                        @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course Name</th>
-                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Details</th>*@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                     </tr>
@@ -31,9 +30,6 @@
                                             </div>
                                         </div>
                                     </td>
-                        @* <td>
-                            <p class="text-xs font-weight-bold mb-0">@item.StudentName</p>
-                            </td>*@
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">@item.FatherName</p>
                                     </td> 
@@ -58,7 +54,7 @@
                                             <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.StudentName')">
                                                 Delete
                                             </a>
-                                             <a class="badge badge-sm bg-gradient-success printBtn" target=”_blank” asp-controller="Home" asp-action="printreport" asp-route-id="@item.StudentId" data-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                             <a class="badge badge-sm bg-gradient-success printBtn"  asp-controller="Home" asp-action="printreport" asp-route-id="@item.StudentId" target="_blank" data-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
                                                 Report
                                             </a>
 
@@ -78,6 +74,9 @@
               </div>
         </div>
     </div>
+
+
+
   @*  <script type="text/javascript">
     $(".printBtn").click(function(e)
     {

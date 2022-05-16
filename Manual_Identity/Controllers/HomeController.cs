@@ -2,6 +2,7 @@
 using Manual_Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Reporting.NETCore;
+using SelectPdf;
 //using Microsoft.Reporting.WebForms;
 using System.Data;
 using System.Diagnostics;
@@ -44,9 +45,7 @@ namespace Manual_Identity.Controllers
                AdmissionDate = s.AdmissionDate,
                ContactNo = s.ContactNo,
                PhotoPath = s.PhotoPath,
-
            };
-
             string renderFormat = "PDF";
             string extension = "pdf";
             string mimetype = "application/pdf";
@@ -64,5 +63,20 @@ namespace Manual_Identity.Controllers
 
         }
 
+        public IActionResult index()
+        {
+            return View();
+        }
+        public IActionResult GeneratePdf(string html)
+        {
+            HtmlToPdf converter = new HtmlToPdf();
+            //html = html.Replace("start", "<").Replace("end", ">");
+            //PdfDocument doc = converter.ConvertHtmlString(html);
+            PdfDocument doc = converter.ConvertUrl("https://localhost:7070/Stud_Dep/JoinTable");
+            //doc.Save($"{AppDomain.CurrentDomain.BaseDirectory}\url.pdf");
+            byte[] pdfFile = doc.Save();
+            doc.Close();
+            return File(pdfFile, "application/pdf");
+        }
     }
 }
