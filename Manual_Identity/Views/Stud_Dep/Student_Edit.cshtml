@@ -1,0 +1,116 @@
+﻿@model Manual_Identity.Models.StudentViewModel
+@{
+    ViewData["Title"] = "Student";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+
+}
+
+ <div class="page-header min-vh-100">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-4"  asp-validation-summary="All"></div>
+                <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                    <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5" style="margin-top:50px">
+                    <div class="card card-plain" >
+                        <div class="card-header">
+                            <h4 class="font-weight-bolder">Edit Student</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" asp-action="Student_Edit" enctype="multipart/form-data">
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="hidden" asp-for="StudentId" />
+                                    <input type="hidden" asp-for="PhotoPath" value=""/>
+                                     <input type="hidden" asp-for="AdmissionDate" />
+                                     <input type="hidden" asp-for="Year" />
+                                     <input type="hidden" asp-for="Month" />
+
+                                    <input  asp-for="StudentName" placeholder="Student Name" class="form-control"><br />
+                                      <span asp-validation-for="StudentName"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="Email" placeholder="Email" class="form-control">
+                                    <br />
+                                      <span asp-validation-for="Email"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="FatherName" placeholder="Father Name" class="form-control">
+                                    <br />
+                                      <span asp-validation-for="FatherName"></span>
+                                </div>
+                                <div class="form-group input-group input-group-outline mb-3 ">
+
+                                @*Work Proper*@
+                                @*@Html.DropDownList("CourseId",
+                                    new SelectList(ViewBag.Courses,"CourseId","Name"),
+                                    new {@class="form-select ps-3"})*@
+
+                                    <select asp-for="CourseId" class="form-control"
+                                    asp-items="@(new SelectList(ViewBag.Courses,"CourseId","Name"))"></select>
+
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="Address" placeholder="Address" class="form-control">
+                                      <span asp-validation-for="Address"></span>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <input  asp-for="ContactNo" placeholder="Contact No" class="form-control">
+                                      <span asp-validation-for="ContactNo"></span>
+                                </div> 
+                               
+                                <div class="input-group input-group-outline mb-3">
+                                    <input type="file" asp-for="PhotoPath" name="img" class="form-control" onChange="previewFile(this)" />
+                                @*<img id="imgPreview" src="#" alt="pic" style="height: 50px; margin-left: 5px; margin-top: 9px;width: 40%; display:none;border-radius:7px;" />*@
+                                </div> 
+                                <div class="input-group input-group-outline mb-2">
+                                   <img id="imgPreview" src="~/image/@Model.PhotoPath" alt="pic" style="height: 100px; margin-left: 30%; margin-top: 0px; border-radius:7px;" />
+                                </div>
+
+                            @if (ViewBag.Message != null && ViewBag.Message == "Exist")
+                            {
+                                        <span style="color:red;"> Same Data Already exist.</span>                      
+                            }
+
+                                <div class="text-center">
+                                    <button type="submit" asp-controller="Stud_Dep" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-2 mb-0">Save</button>
+                                    <button type="submit" asp-controller="Stud_Dep"  formmethod="get" asp-action="Student_List" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Back</button>
+   
+                                </div>
+                            </form>
+                                    @*<div class="text-center">
+                    <form method="get">
+                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                </form></div>*@
+                               
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+      <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+       function previewFile(input)
+      {
+        var file = $("input[type=file]").get(0).files[0];
+        if(file)
+        {
+         var s=URL.createObjectURL(file);
+         $("#imgPreview").show();
+         $("#imgPreview").attr("src", s);
+        }
+      }
+   </script>
+
+    <script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+</script>

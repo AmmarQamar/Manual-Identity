@@ -112,13 +112,14 @@
                                     </li>*@
                                 @if (signInManager.IsSignedIn(User))
                                 {
+                                     <li class="nav-item">
                                     <form method="post" asp-controller="Account" asp-action="Logout">
                                         <button class=" nav-link text-body font-weight-bold px-0 btn">
                                 
                                             Logout @User.Identity.Name
                                         </button>
                                     </form>
-
+                                    </li>
                                 }
                                 else
                                 {
@@ -135,18 +136,6 @@
                                         </a>
                                     </li>
                                 }
-
-
-
-
-
-
-
-
-
-
-
-
                             </ul>
 
                         </div>

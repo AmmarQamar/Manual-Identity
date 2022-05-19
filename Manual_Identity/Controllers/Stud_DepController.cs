@@ -14,85 +14,107 @@ namespace Manual_Identity.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment webHostEnvironment;
 
-        public Stud_DepController(AppDbContext _context,IWebHostEnvironment webHostEnvironment)
+        public Stud_DepController(AppDbContext _context, IWebHostEnvironment webHostEnvironment)
         {
             this._context = _context;
             this.webHostEnvironment = webHostEnvironment;
         }
         // Student
         [HttpGet]
-        public async Task<IActionResult> Student(StudentViewModel model)
+        public async Task<IActionResult> Student()
         {
-
             ViewBag.Courses = _context.Courses.ToList();
-            return View(model);
+            return View();
         }
 
-        //Add or Edit Student
         [HttpPost]
-        public async Task<IActionResult> AdStudent(StudentViewModel model,IFormFile img)
+        public async Task<IActionResult> AdStudent(StudentViewModel model, IFormFile img)
         {
-            var res = _context.Students.Where(x => x.StudentName == model.StudentName &&
-            x.FatherName == model.FatherName && x.CourseId == model.CourseId && x.Address == model.Address).FirstOrDefault();
-            if (res != null)
+            string uniquefilename = string.Empty;
+            if (img != null)
             {
-                ViewBag.Message = "Exist";
-                return View("Student");
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
+                uniquefilename = Guid.NewGuid().ToString() + "_" + img.FileName;
+                string filepath = Path.Combine(uploadfolder, uniquefilename);
+                img.CopyTo(new FileStream(filepath, FileMode.Create));
+                model.PhotoPath = uniquefilename;
             }
             if (ModelState.IsValid)
             {
                 model.Year = model.AdmissionDate.Year;
                 model.Month = model.AdmissionDate.Month;
-                List<StudentViewModel> students = _context.Students.ToList();
-                List<CourseViewModel> courses = _context.Courses.ToList();
-              
-                string uniquefilename = string.Empty;
-                if(img!=null)
-                {
-                    string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
-                    uniquefilename = Guid.NewGuid().ToString() + "_" + img.FileName;
-                    string filepath=Path.Combine(uploadfolder, uniquefilename);
-                    img.CopyTo(new FileStream(filepath, FileMode.Create));
-                    model.PhotoPath = uniquefilename;
-                }
+             
                 if (model.StudentId == 0)
                 {
-                //    var stdlist =
-                //   from s in students
-                //   join c in courses
-                //   //where c.CourseId == s.CourseId
-                //   on s.CourseId equals c.CourseId
-                //   into Stu_Cou
-                //   from c in Stu_Cou.DefaultIfEmpty()
-                //   select new StudentViewModel
-                //   {
-                //       StudentId = s.StudentId,
-                //       StudentName=s.StudentName,
-                //       FatherName=s.FatherName,
-                //       CourseId=s.CourseId,
-                //       CourseName = c.Name,
-                //       Email=s.Email,
-                //       Address=s.Email,
-                //       Year = model.AdmissionDate.Year,
-                //       Month = model.AdmissionDate.Month,
-                //       AdmissionDate=model.AdmissionDate,
-                //       ContactNo=s.ContactNo,
-                //       PhotoPath = uniquefilename,
+                    var res = _context.Students.Where(x => x.StudentName == model.StudentName &&
+                     x.FatherName == model.FatherName && x.CourseId == model.CourseId &&
+                     x.Address == model.Address).FirstOrDefault();
+                    if (res != null)
+                    {
+                        ViewBag.Message = "Exist";
+                        return RedirectToAction("Student", "Stud_Dep");
 
-                //};
+                    }
+
                     _context.Students.Add(model);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Student_List", "Stud_Dep");
                 }
-                else
-                {
-                    _context.Entry(model).State = EntityState.Modified;
-                    _context.SaveChanges();
-                    return RedirectToAction("Student_List", "Stud_Dep");
-                }
+              
             }
             return View("Student");
-       }
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Student_Edit(int id)
+        {
+            var student = await _context.Students.FindAsync(id);
+            ViewBag.Courses = _context.Courses.ToList();
+
+            if (student == null)
+            {
+                return View("NotFound");
+            }
+            var model = new StudentViewModel
+            {
+                StudentId = student.StudentId,
+                StudentName = student.StudentName,
+                Email = student.Email,
+                FatherName = student.FatherName,
+                CourseId = student.CourseId,
+                //CourseName = student.CourseName,
+                Address = student.Address,
+                ContactNo = student.ContactNo,
+                Year = student.AdmissionDate.Year,
+                Month = student.AdmissionDate.Month,
+                PhotoPath = student.PhotoPath,
+                AdmissionDate = student.AdmissionDate,
+            };
+            return View(model);
+        }
+
+        //Add or Edit Student
+        [HttpPost]
+        public async Task<IActionResult> Student_Edit(StudentViewModel model, IFormFile img)
+        {
+
+            var user = _context.Students.Where(x => x.StudentId == model.StudentId).AsNoTracking().FirstOrDefault();
+            model.PhotoPath = user.PhotoPath;
+            string uniquefilename = string.Empty;
+            if (img != null)
+            {
+                string uploadfolder = Path.Combine(webHostEnvironment.WebRootPath, "image");
+                uniquefilename = Guid.NewGuid().ToString() + "_" + img.FileName;
+                string filepath = Path.Combine(uploadfolder, uniquefilename);
+                img.CopyTo(new FileStream(filepath, FileMode.Create));
+                model.PhotoPath = uniquefilename;
+            }
+            _context.Entry(model).State = EntityState.Modified;
+            _context.SaveChanges();
+            return RedirectToAction("Student_List", "Stud_Dep");
+        }
+
 
         //Student List
         [HttpGet]
@@ -100,7 +122,7 @@ namespace Manual_Identity.Controllers
         {
             return View(await _context.Students.ToListAsync());
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> Student_Delete(int id)
         {
@@ -120,57 +142,35 @@ namespace Manual_Identity.Controllers
         {
             if (id == null) { return NotFound(); }
             var student = await _context.Students.FindAsync(id);
-            if (student == null) { return View("NoFound"); }
-
+            if (student == null)
+            { return View("NoFound"); }
             List<StudentViewModel> students = _context.Students.ToList();
-            List<CourseViewModel> courses=_context.Courses.ToList();
-            var StudentViewModel = from s in students
-                         join c in courses
-                         on s.CourseId equals c.CourseId where s.StudentId==id
-
-                         select new StudentViewModel
-                         { 
-
-                             //Courses_details = c,
-                             //Students_details = s,
-                             StudentId = student.StudentId,
-                             StudentName = student.StudentName,
-                             Email = student.Email,
-                             FatherName = student.FatherName,
-                             CourseId = student.CourseId,
-                             CourseName = c.Name,
-                             Address = student.Address,
-                             ContactNo = student.ContactNo,
-                             Year = student.AdmissionDate.Year,
-                             Month = student.AdmissionDate.Month,
-                             PhotoPath = student.PhotoPath,
-                         };
+            List<CourseViewModel> courses = _context.Courses.ToList();
+            var StudentViewModel = (from s in students
+                                    join c in courses
+                                    on s.StudentId equals id
+                                    where s.CourseId == c.CourseId
+                                    select new StudentViewModel
+                                    {
+                                        StudentId = student.StudentId,
+                                        StudentName = student.StudentName,
+                                        Email = student.Email,
+                                        FatherName = student.FatherName,
+                                        CourseId = student.CourseId,
+                                        CourseName = c.Name,
+                                        Address = student.Address,
+                                        ContactNo = student.ContactNo,
+                                        Year = student.AdmissionDate.Year,
+                                        Month = student.AdmissionDate.Month,
+                                        PhotoPath = student.PhotoPath,
+                                    }).FirstOrDefault(); ;
             return View(StudentViewModel);
-
-
-
-            //return View(new StudentViewModel
-            //{
-            //    StudentId = student.StudentId,
-            //    StudentName = student.StudentName,
-            //    Email = student.Email,
-            //    FatherName = student.FatherName,
-            //    CourseId = student.CourseId,
-            //    CourseName = 
-            //    Address = student.Address,
-            //    ContactNo = student.ContactNo,
-            //    Year = student.AdmissionDate.Year,
-            //    Month = student.AdmissionDate.Month,
-            //    //AdmissionDate=student.AdmissionDate,
-            //    //AdmissionYear=student.AdmissionYear,
-            //    PhotoPath = student.PhotoPath,
-            //});
         }
 
         //Course
         [HttpGet]
         public async Task<IActionResult> Course(CourseViewModel model)
-        {  return View(model); }
+        { return View(model); }
 
         //Add or Edit Course
         [HttpPost]
@@ -198,7 +198,6 @@ namespace Manual_Identity.Controllers
                         _context.Entry(model).State = EntityState.Modified;
                         _context.SaveChanges();
                         return RedirectToAction("CourseList", "Stud_Dep");
-
                     }
                 }
                 ModelState.Clear();
@@ -210,8 +209,6 @@ namespace Manual_Identity.Controllers
         //Course List
         public async Task<IActionResult> CourseList()
         {
-            //var list = await _context.Courses.ToListAsync();
-            //return View(list);
             return View(await _context.Courses.ToListAsync());
         }
 
@@ -265,57 +262,27 @@ namespace Manual_Identity.Controllers
                     Courses_details = c,
                     Students_details = s
                 };
-            //var html = "this is my html";
-            //var pdfBytes = PdfSharpConvert(html);
-            //return Json(new { filename = "myFile.pdf", message = Convert.ToBase64String(pdfBytes) });
             return View(stdlist);
-
         }
 
         public IActionResult GeneratePdf(string html)
         {
-            
             HtmlToPdf converter = new HtmlToPdf();
             PdfDocument doc = new PdfDocument();
-          
             PdfFont font = doc.AddFont(PdfStandardFont.Helvetica);
             font.Size = 22;
-            //PdfPage page = doc.AddPage(PdfCustomPageSize.A4,
-            //    new PdfMargins(0f), PdfPageOrientation.Portrait);
-
             converter.Options.PdfPageSize = PdfPageSize.A4;
             converter.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
-            //converter.Options.MarginLeft = 30;
-            //converter.Options.MarginRight = 0;
             converter.Options.MarginTop = 50;
-            //converter.Options.MarginBottom = 0;
-
             html = html.Replace("start", "<").Replace("end", ">");
             doc = converter.ConvertHtmlString(html);
-            //PdfDocument doc = converter.ConvertUrl("https://localhost:7070/Stud_Dep/JoinTable");
-            //doc.Save($"{AppDomain.CurrentDomain.BaseDirectory}\report.pdf");
             byte[] pdfFile = doc.Save();
             doc.Close();
             return File(pdfFile, "application/pdf");
         }
 
 
-        //private Byte[] PdfSharpConvert(String html)
-        //{
-        //    Byte[] res = null;
-        //    using (MemoryStream ms = new MemoryStream())
-        //    {
-        //        var pdf = TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
-        //        pdf.Save(ms);
-        //        res = ms.ToArray();
-        //    }
-        //    return res;
-        //}
-
-
-
-
-        //Student Delete
+        //Add or Edit Student
 
     }
 }

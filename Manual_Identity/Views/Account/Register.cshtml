@@ -184,12 +184,8 @@
     </div>
 </section>
  
-<script>
- @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-</script>
-<script>
-        
 
+<script>
      function previewFile(input)
      {
         var file = $("input[type=file]").get(0).files[0];
@@ -200,6 +196,9 @@
          $("#imgPreview").attr("src", s);
         }
     }
-
-
 </script>
+
+ <script>
+          @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+      </script>

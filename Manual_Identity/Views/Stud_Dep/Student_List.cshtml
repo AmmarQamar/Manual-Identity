@@ -42,9 +42,11 @@
 
                                     <td class="align-middle text-center text-sm">
                                         <form method="get">
-
-                                           <a href="@Url.Action("Student",new { item.StudentId,item.StudentName,item.FatherName,item.CourseId,item.Address})" class="badge badge-sm bg-gradient-success">Edit</a>
-
+                                             <a class="badge badge-sm bg-gradient-success" asp-action="Student_Edit" asp-route-id="@item.StudentId" data-toggle="tooltip" data-original-title="Edit user">
+                                                Edit
+                                            </a>
+                                          @* <a href="@Url.Action("Student",new { item.StudentId,item.StudentName,item.FatherName,item.Email,item.AdmissionDate,item.CourseId,item.ContactNo,item.PhotoPath,item.Address})" class="badge badge-sm bg-gradient-success">Edit</a>
+*@
                                 @*    <a class="badge badge-sm bg-gradient-success" asp-controller="Stud_Dep" asp-action="Course" asp-route-id="@item.CourseId" data-toggle="tooltip" data-original-title="Edit user">
                                     Edit
                                     </a>*@
@@ -69,7 +71,7 @@
             </table>
                              <div class="text-center">
                     <form method="get">
-                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                    <button type="submit" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
                                 </form></div>
               </div>
         </div>
