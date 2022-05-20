@@ -163,7 +163,7 @@ namespace Manual_Identity.Controllers
                                         Year = student.AdmissionDate.Year,
                                         Month = student.AdmissionDate.Month,
                                         PhotoPath = student.PhotoPath,
-                                    }).FirstOrDefault(); ;
+                                    }).FirstOrDefault(); 
             return View(StudentViewModel);
         }
 

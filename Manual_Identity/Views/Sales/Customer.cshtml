@@ -1,0 +1,21 @@
+﻿@model Manual_Identity.ViewModels.CustomerViewModel
+@{
+    ViewData["Title"] = "Customer";
+    Layout = "~/Views/Shared/SideNavBar.cshtml";
+}
+ <div class="container">
+    <div class="row">
+        <div class="col-md-4"  asp-validation-summary="All"></div>
+              <form method="post" asp-action="Customer">
+                  <div class="input-group input-group-outline mb-3">
+                      <input  asp-for="CustomerId" type="hidden" value=0 />
+                      <input  asp-for="CustomerName" placeholder="Customer Name" class="form-control max-width-300" ><br />
+                        <span asp-validation-for="CustomerName"></span>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" formmethod="get" class="btn btn-primary">Back</button>
+
+              </form>
+         </div>
+  </div>
+

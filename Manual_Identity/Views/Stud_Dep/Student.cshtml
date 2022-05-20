@@ -9,8 +9,8 @@
         <div class="container">
             <div class="row">
                     <div class="col-md-4"  asp-validation-summary="ModelOnly"></div>
-                <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-                    <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
+                    <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                     <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('../assets/img/illustrations/illustration-signup.jpg'); background-size: cover;">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5" style="margin-top:50px">
@@ -61,7 +61,7 @@
                                     <input  asp-for="ContactNo" placeholder="Contact No" class="form-control">
                                       <span asp-validation-for="ContactNo"></span>
                                 </div> 
-                               
+
                                 <div class="input-group input-group-outline mb-3">
                                     <input type="file" asp-for="PhotoPath" name="img" class="form-control" onChange="previewFile(this)" />
                                 @*<img id="imgPreview" src="#" alt="pic" style="height: 50px; margin-left: 5px; margin-top: 9px;width: 40%; display:none;border-radius:7px;" />*@
@@ -72,20 +72,20 @@
 
                             @if (ViewBag.Message != null && ViewBag.Message == "Exist")
                             {
-                                        <span style="color:red;"> Same Data Already exist.</span>                      
+                                                <span style="color:red;"> Same Data Already exist.</span>                      
                             }
 
                                 <div class="text-center">
                                     <button type="submit" asp-controller="Stud_Dep" asp-action="AdStudent" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
                                     <button type="submit" asp-controller="Stud_Dep"  formmethod="get" asp-action="Student_List" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Back</button>
-   
+
                                 </div>
                             </form>
-                                    @*<div class="text-center">
-                    <form method="get">
-                                    <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
-                                </form></div>*@
-                               
+                        @*<div class="text-center">
+                            <form method="get">
+                            <button type="submit" asp-controller="Account" asp-action="dashboard" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                            </form></div>*@
+
                         </div>
 
                     </div>
