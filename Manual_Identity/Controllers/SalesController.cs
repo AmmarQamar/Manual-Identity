@@ -81,6 +81,7 @@ namespace Manual_Identity.Controllers
                     UnitPrice=model.UnitPrice,
                     SalesDate=model.SalesDate,
                     Quantity=model.Quantity,
+                    
                 };
                 _context.Sales.Add(sales);
                 await _context.SaveChangesAsync();

@@ -15,74 +15,62 @@
   </style>
  <div class="container">
     <div class="row">
-        <div class="col-md-4"  asp-validation-summary="All"></div>
-        @*<form >*@
+        <div class="col-md-4"  asp-validation-summary="ModelOnly"></div>
+        <form method="post" asp-action="Sales">
                   <div class="input-group input-group-outline mb-3">
-                      <input  asp-for="Id" type="hidden" value=0 />
-                      <label class="sales_label">Customer</label>
+                         <input  asp-for="Id" type="hidden" value=0 />
+                         <label class="sales_label">Customer</label>
                          <select asp-for="CustomerId" class="form-control  max-width-300" id="customer_id"
                           asp-items="@(new SelectList(ViewBag.Customer,"CustomerId","CustomerName"))"></select>
                   </div>
                    <div class="input-group input-group-outline mb-3">
-                       <label  class="sales_label">Item Id</label>
+                          <label  class="sales_label">Item Id</label>
                           <select asp-for="ItemId" class="form-control ml-10 max-width-300"id="item_id"
                           asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))"></select>
                   </div>
-                  </div>
                     <div class="input-group input-group-outline mb-3">
                         <label asp-for="Quantity"  class="sales_label"></label>
-                    <input  asp-for="Quantity" placeholder="Quantity" class="form-control max-width-300" id="quantity_id"><br />
+                        <input  asp-for="Quantity" placeholder="Quantity" class="form-control max-width-300" id="quantity_id"><br />
                         <span asp-validation-for="SalesDate"></span>
                   </div>
                   <div class="input-group input-group-outline mb-3">
-                     <label class="sales_label">Date</label>
-                    <input  asp-for="SalesDate" placeholder="SalesDate" class="form-control max-width-300" id="salesdate_id" ><br />
+                        <label class="sales_label">Date</label>
+                        <input  asp-for="SalesDate" placeholder="SalesDate" class="form-control max-width-300" id="salesdate_id" ><br />
                         <span asp-validation-for="SalesDate"></span>
                   </div>
-
                   <div class="input-group input-group-outline mb-3">
-                      <label asp-for="UnitPrice"  class="sales_label"></label>
-                    <input  asp-for="UnitPrice" placeholder="Unit Price" class="form-control max-width-300" id="unitprice_id" ><br />
+                        <label asp-for="UnitPrice"  class="sales_label"></label>
+                        <input  asp-for="UnitPrice" placeholder="Unit Price" class="form-control max-width-300" id="unitprice_id" ><br />
                         <span asp-validation-for="UnitPrice"></span>
                   </div>
+                  <input type="button" class="btn btn-primary addtocart" value="Add To Cart"/>
+                  <button type="submit" formmethod="get" asp-action="Sales" class="btn btn-primary">Back</button>
+                  <div id="show_tab" style="margin-top: 40px;margin-left:120px;">
+                    @*Cart table show here *@
+                  </div>
 
-                  <button class="btn btn-primary addtocart" >Add To Cart</button>
-                  <button type="submit" formmethod="get" class="btn btn-primary">Back</button>
-        @*  </form>*@
-               <div id="show_tab" style="margin-top: 40px;margin-left:120px;">
-            @*Cart table show here *@
-               </div>
                <div id="cal" style="margin-top: 40px;margin-left:120px;">
-            @*Cart table show here *@
+                      @*Calculation Table show here *@
                </div>
-
-        @*      <div class="input-group input-group-outline mb-3">
-            <label asp-for="TotalAmount"></label>
-            <input  asp-for="TotalAmount" placeholder="TotalAmount" class="form-control max-width-300" id="unitprice_id" ><br />
-            <span asp-validation-for="TotalAmount"></span>
-            </div>
-            <div class="input-group input-group-outline mb-3">
-            <label asp-for="PaidAmount"></label>
-            <input  asp-for="PaidAmount" placeholder="Paid Amount" class="form-control max-width-300" id="unitprice_id" ><br />
-            <span asp-validation-for="PaidAmount"></span>
-            </div>
-            <div class="input-group input-group-outline mb-3">
-            <label asp-for="BalanceAmount"></label>
-            <input  asp-for="BalanceAmount" placeholder=" Balance Amount" class="form-control max-width-300" id="unitprice_id" ><br />
-            <span asp-validation-for="BalanceAmount"></span>
-            </div>*@
-        @*   <table class="table" id="carttable" style="display: none;" >
-            <tr><th>Customer Id</th><th>Item Id</th><th>Item Name</th><th>Quantity</th><th>Unit Price</th><th>Total Amount</th></tr><tr><td>"+customer+"</td> <td>"+item+"</td><td>"+item.Text+"</td> <td>"+quantity+"</td> <td>"+unitprice+"</td> <td>"+Total+"</td>              
-            @{
-            Model.TotalAmount = Model.Quantity * Model.UnitPrice;
-            }
-            <td>@Model.TotalAmount</td>
-            </tr>
-            </table>*@
-
-         </div>
-         <form>
-         <button formmethod="post" asp-action="Sales" type="submit" class="btn btn-primary" >Add To Cart</button>
+               @*Calculation Table*@
+                 <div id="to" style="display:none">
+                      <div class="input-group input-group-outline mb-3">
+                              <label asp-for="TotalAmount"  class="sales_label"></label>
+                              <input  asp-for="TotalAmount"  class="form-control max-width-300" id="totalamount_id" style="margin-left: 17px" readonly><br />
+                              <span asp-validation-for="TotalAmount"></span>
+                          </div>
+                           <div class="input-group input-group-outline mb-3">
+                              <label asp-for="PaidAmount"  class="sales_label"></label>
+                            <input  asp-for="PaidAmount" placeholder="PaidAmount" class="form-control max-width-300" id="paidamount_id" style="margin-left: 21px"><br />
+                                <span asp-validation-for="PaidAmount"></span>
+                          </div>
+                           <div class="input-group input-group-outline mb-3">
+                              <label asp-for="BalanceAmount"  class="sales_label"></label>
+                            <input  asp-for="BalanceAmount" placeholder="Balance" class="form-control max-width-300" id="balanceamount_id" readonly ><br />
+                                <span asp-validation-for="BalanceAmount"></span>
+                          </div>
+                 </div>
+         <button type="submit" class="btn btn-primary" >Save</button>
          </form>
   </div>
 
@@ -91,13 +79,13 @@
       var totalamount=0;
       var count=0;
       var content;
+      var cal;
       $(".addtocart").click(function()
       {
-          debugger;
+
           $("#customer_id,#item_id,#unitprice_id,#quanity_id").val();
           var customer =$("#customer_id").val();
           var item =$("#item_id").val();
-          //var itemtext =$("#item_id");
           var quantity =$("#quantity_id").val();
           var unitprice =$("#unitprice_id").val();
           var totalprice=(quantity*unitprice);
@@ -106,19 +94,32 @@
              content="<tr><th>Customer Id</th><th>Item Id</th><th>Quantity</th><th>Unit Price</th><th>Total Price</th></tr>"
              $('#show_tab').append(content);
              count++;
-          }
-          
-          content="<tr><td>"+customer+"</td> <td>"+item+"</td> <td>"+quantity+"</td> <td>"+unitprice+"</td> <td>"+totalprice+"</td</tr></table>"
-          //var content="<table><tr><td>Quantity</td><td>"+quantity+"</td></tr> <tr><td>Unit Price</td><td>"+unitprice+"</td></tr> <tr><td>Total</td><td>"+total+"</td></tr></table>";
+          }   
+           content="<tr><td>"+customer+"</td> <td>"+item+"</td> <td>"+quantity+"</td> <td>"+unitprice+"</td> <td>"+totalprice+"</td</tr></table>"
            $('#show_tab').append(content);
-           count++;
-           
-            totalamount=totalprice+(quantity*unitprice);
-           //var cal="<label>TotalAmount</label>"+totalamount"<br><label>Paid Amount</label><input placeholder='Total Amount'/><br><label>Balance Amount</label><input placeholder='Balance Amount'/><br>"
-           // $('#cal').Html(cal);
-           
+           count++;          
+           totalamount=totalprice+totalamount;
+           $('#to').css('display', 'block');
+           var t_a= $('#totalamount_id').val(totalamount);
+           $('#paidamount_id').val(0);
+           $('#balanceamount_id').val(0);         
+           $('#paidamount_id').keyup(function(){
+           var value1 = parseFloat($('#totalamount_id').val()) || 0;
+           var value2 = parseFloat($('#paidamount_id').val()) || 0;
+           $('#balanceamount_id').val(value2 - value1);
+            });
 
-      
       });
-
+        //function  calculatebalance(){
+        //    debugger;
+        //       var t_a= $('#totalamount_id').val();
+        //       var p_a= $('#paidamount_id').val();
+        //       var res= p_a-t_a;
+        //       var c= $('#balanceamount_id').val(res);
+        //}
   </script>
+    <script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    </script>
