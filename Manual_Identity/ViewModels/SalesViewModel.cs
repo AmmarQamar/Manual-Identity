@@ -8,6 +8,11 @@ namespace Manual_Identity.ViewModels
         public int Id { get; set; }
 
         [Required]
+        [MinLength(4, ErrorMessage = "Minmum 4 number digits Required")]
+        public int InvoiceNumber { get; set; }
+
+
+        [Required]
         public int CustomerId { get; set; }
 
         [Required]
