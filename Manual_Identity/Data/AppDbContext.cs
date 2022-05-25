@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Design;
+using Manual_Identity.ViewModels;
 
 namespace Manual_Identity.Data
 {
@@ -17,6 +18,7 @@ namespace Manual_Identity.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Sales> Sales { get; set; }
+        public DbSet<SalesViewModel> SalesMain { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

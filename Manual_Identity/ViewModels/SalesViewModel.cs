@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Manual_Identity.ViewModels
 {
@@ -12,20 +13,20 @@ namespace Manual_Identity.ViewModels
         public int InvoiceNumber { get; set; }
 
 
-        [Required]
+        [NotMapped]
         public int CustomerId { get; set; }
 
-        [Required]
+        [NotMapped]
         public int ItemId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public DateTime SalesDate { get; set; }
 
-        [Required]
+        [NotMapped]
         public int Quantity { get; set; }
-
-        [Required]
+       
+        [NotMapped]
         public int UnitPrice { get; set; }
 
         public int TotalAmount { get; set; }

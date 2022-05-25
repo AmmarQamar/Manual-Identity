@@ -63,19 +63,30 @@ namespace Manual_Identity.Controllers
         [HttpGet]
         public async Task<IActionResult> Sales()
         {
+            int inv;
+            Random rand = new Random();
+            inv = rand.Next();
+            ViewData["DateTime"] = DateTime.Now;
+            //DateTime dt = DateTime.Now;
+            //ViewBag.dt = dt;
+            ViewBag.Inv = inv;
             ViewBag.Customer =  _context.Customers.ToList();
             ViewBag.Item =  _context.Items.ToList();
-            return View();
+            return View();       
         }
 
         [HttpPost]
         public async Task<IActionResult> Sales(SalesViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //Random rand=new Random();
+            //model.InvoiceNumber=rand.Next();
+            //model.SalesDate = DateTime.Now;
+            //if (ModelState.IsValid)
+            //{
                 Sales sales = new Sales()
                 {
                     Id = model.Id,
+                    InvoiceNumber=model.InvoiceNumber,
                     CustomerId=model.CustomerId,
                     ItemId = model.ItemId,
                     UnitPrice=model.UnitPrice,
@@ -85,9 +96,21 @@ namespace Manual_Identity.Controllers
                 };
                 _context.Sales.Add(sales);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Student_List", "Stud_Dep");
-            }
-            return View();
+
+
+                SalesViewModel salesmain = new SalesViewModel()
+                {
+                    InvoiceNumber = model.InvoiceNumber,
+                    SalesDate=model.SalesDate,
+                    TotalAmount=model.TotalAmount,
+                    PaidAmount=model.PaidAmount,
+                    BalanceAmount=model.BalanceAmount
+                };
+                _context.SalesMain.Add(salesmain);
+                await _context.SaveChangesAsync();
+               return RedirectToAction("Student_List", "Stud_Dep");
+            //}
+            //return View();
         }
 
 

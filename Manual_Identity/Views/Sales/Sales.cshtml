@@ -19,13 +19,15 @@
         
         <div class="row mt-2" style="padding:0px 10px;">
            <div class="col-sm-4">
+               <input asp-for="InvoiceNumber" type="hidden" value="" />
+               <input asp-for="SalesDate" type="hidden" value="" />
              <label class="form-label">InVoice No:</label>
-             <input asp-for="InvoiceNumber" class="form-control" readonly/>
+             <input asp-for="InvoiceNumber" class="form-control" value="@ViewBag.Inv" readonly/>
              <span asp-validation-for="InvoiceNumber" ></span>
            </div>
            <div class="col-sm-4">
              <label class="form-label">Purchase Date:</label>
-             <input asp-for="SalesDate" class="form-control" readonly/>
+             <input asp-for="SalesDate" class="form-control" value="@ViewData["DateTime"]" readonly/>
              <span asp-validation-for="SalesDate"></span>
            </div>
             <div class="col-sm-4 mb-3">
@@ -83,7 +85,8 @@
                           </div>
                  </div>
        
-
+                 <button type="submit" class="btn btn-primary">Save</button>
+                 <button type="submit" formmethod="get" class="btn btn-primary" asp-controller="Stud_Dep" asp-action="Student_List">Back</button>
 
   </form>
   </div>
