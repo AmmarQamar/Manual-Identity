@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\image\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\Reports\ReportStudent.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

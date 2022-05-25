@@ -1,0 +1,64 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: sans-serif;
+    background-color: azure; 
+}
+
+.field-validation-error {
+    color: red !important;
+}
+.container-fluid {
+    width: 100%;
+    margin-left: 0px!important;
+}
+.sales_container {
+   
+    width: 100%;
+    margin-left: 0px;
+    padding: 0px 2px;
+    padding-bottom: 40px;
+}
+
+.cartlist {
+    border: 2px solid white;
+    /*padding-left: 10px;*/
+    padding: 20px 10px;
+    margin: 20px;
+}
+.cartlist th{
+    font-size:12px;
+    margin-left:20px;
+}
+.cartlist label{
+    margin-left:30px;
+    font-size:13px;
+}
+.jscartitem {
+    background-color: white;
+    margin-top: 5px;
+    
+    /*padding: 5px 0px;*/
+}
+.jrcart {
+    border-right: solid 2px black;
+    padding-left: 16px;
+}
+.emptycart{
+    margin-left:35%;
+    padding:50px;
+}

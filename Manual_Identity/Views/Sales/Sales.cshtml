@@ -1,86 +1,103 @@
 ﻿@model Manual_Identity.ViewModels.SalesViewModel
 @{
     ViewData["Title"] = "Customer";
-    Layout = "~/Views/Shared/SideNavBar.cshtml";
+    //Layout = "~/Views/Shared/SideNavBar.cshtml";
+   
 }
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <style>
-      #show_tab table, th ,td{
-          padding:10px 15px;
-      }
-      .sales_label{
-          margin-top:9px;
-          margin-right:20px;
-      }
-  </style>
- <div class="container">
-    <div class="row">
-        <div class="col-md-4"  asp-validation-summary="ModelOnly"></div>
-        <form method="post" asp-action="Sales">
-                    <div class="input-group input-group-outline mb-3">
-                         <label class="sales_label">Invoice Number</label>
-                          <input  asp-for="InvoiceNumber" placeholder="Invoice Number" class="form-control max-width-300" id="invoice_id"><br />
-                        
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                         <input  asp-for="Id" type="hidden" value=0 />
-                         <label class="sales_label">Customer</label>
-                         <select asp-for="CustomerId" class="form-control  max-width-300" id="customer_id"
-                          asp-items="@(new SelectList(ViewBag.Customer,"CustomerId","CustomerName"))"></select>
-                  </div>
-                   <div class="input-group input-group-outline mb-3">
-                          <label  class="sales_label">Item Id</label>
-                          <select asp-for="ItemId" class="form-control ml-10 max-width-300"id="item_id"
-                          asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))"></select>
-                  </div>
-                    <div class="input-group input-group-outline mb-3">
-                        <label asp-for="Quantity"  class="sales_label"></label>
-                        <input  asp-for="Quantity" placeholder="Quantity" class="form-control max-width-300" id="quantity_id"><br />
-                        <span asp-validation-for="SalesDate"></span>
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                        <label class="sales_label">Date</label>
-                        <input  asp-for="SalesDate" placeholder="SalesDate" class="form-control max-width-300" id="salesdate_id" ><br />
-                        <span asp-validation-for="SalesDate"></span>
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                        <label asp-for="UnitPrice"  class="sales_label"></label>
-                        <input  asp-for="UnitPrice" placeholder="Unit Price" class="form-control max-width-300" id="unitprice_id" ><br />
-                        <span asp-validation-for="UnitPrice"></span>
-                  </div>
-                  <input type="button" class="btn btn-primary addtocart" value="Add To Cart"/>
-                  <button type="submit" formmethod="get" asp-action="Sales" class="btn btn-primary">Back</button>
-                  <div id="show_tab" style="margin-top: 40px;margin-left:120px;">
-                    @*Cart table show here *@
-                  </div>
+<body style="margin-left:0px;">
 
-               <div id="cal" style="margin-top: 40px;margin-left:120px;">
-                      @*Calculation Table show here *@
-               </div>
-               @*Calculation Table*@
-                 <div id="to" style="display:none">
-                      <div class="input-group input-group-outline mb-3">
-                              <label asp-for="TotalAmount"  class="sales_label"></label>
-                              <input  asp-for="TotalAmount"  class="form-control max-width-300" id="totalamount_id" style="margin-left: 17px" readonly><br />
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/js/Cart.js"></script>
+  <link rel="stylesheet" href="~/css/sales.css" />
+ 
+  <div class="sales_container ">
+      <div class="col-md-4"  asp-validation-summary="ModelOnly"></div>
+      <form method="post" asp-action="Sales">
+         <div style="width:100%;background-color:blue;padding:5px 10px">
+           <h6 >Purchase Information</h6>
+         </div>
+        
+        <div class="row mt-2" style="padding:0px 10px;">
+           <div class="col-sm-4">
+             <label class="form-label">InVoice No:</label>
+             <input asp-for="InvoiceNumber" class="form-control" readonly/>
+             <span asp-validation-for="InvoiceNumber" ></span>
+           </div>
+           <div class="col-sm-4">
+             <label class="form-label">Purchase Date:</label>
+             <input asp-for="SalesDate" class="form-control" readonly/>
+             <span asp-validation-for="SalesDate"></span>
+           </div>
+            <div class="col-sm-4 mb-3">
+             <label class="form-label">Customer ID:</label>
+             <select asp-for="CustomerId" class="form-control  max-width-300" id="customer_id"
+               asp-items="@(new SelectList(ViewBag.Customer,"CustomerId","CustomerName"))"></select>
+           </div>
+           <div class="col-sm-4">
+              <label class="form-label">Item ID:</label>
+              <select asp-for="ItemId" class="form-control ml-10 max-width-300" id="item_id"
+                 asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))"></select>
+           </div>
+            <div class="col-sm-4">
+             <label class="form-label">Quantity:</label>
+             <input asp-for="Quantity" class="form-control" id="quantity_id" />
+             <span asp-validation-for="Quantity"></span>
+           </div>
+           <div class="col-sm-4">
+             <label class="form-label">Unit Price:</label>
+             <input asp-for="UnitPrice" class="form-control" id="unitprice_id" />
+             <span asp-validation-for="UnitPrice"></span>
+           </div>
+        </div>
+          <input type="button" class="btn btn-success addtocart" style="margin-top:15px;margin-left:10px;padding:7px 10px;" value="Add To Cart"/>
+          <div class="cartlist">  
+       @*       Cart Item              
+                    <div class="emptycart">
+                        Cart List is Empty...               
+                    </div>
+                   
+                
+                   *@
+                        <div id="show_tab">
+                    @*Cart table show here *@
+              </div>
+              <div id="cal" style="margin-top: 20px; margin-left:10px;"></div>
+   
+             </div>
+
+              <div id="to"class="row" style="display:none; margin:20px 10px;padding:20px 10px;border: 2px solid white;">
+                      <div class="col-sm-4">
+                              <label asp-for="TotalAmount"  class="form-label"></label>
+                              <input  asp-for="TotalAmount"  class="form-control" id="totalamount_id" readonly><br />
                               <span asp-validation-for="TotalAmount"></span>
                           </div>
-                           <div class="input-group input-group-outline mb-3">
-                              <label asp-for="PaidAmount"  class="sales_label"></label>
-                            <input  asp-for="PaidAmount" placeholder="PaidAmount" class="form-control max-width-300" id="paidamount_id" style="margin-left: 21px"><br />
+                           <div class="col-sm-4">
+                              <label asp-for="PaidAmount"  class="form-label"></label>
+                            <input  asp-for="PaidAmount" placeholder="PaidAmount" class="form-control" id="paidamount_id"><br />
                                 <span asp-validation-for="PaidAmount"></span>
                           </div>
-                           <div class="input-group input-group-outline mb-3">
-                              <label asp-for="BalanceAmount"  class="sales_label"></label>
-                            <input  asp-for="BalanceAmount" placeholder="Balance" class="form-control max-width-300" id="balanceamount_id" readonly ><br />
-                                <span asp-validation-for="BalanceAmount"></span>
+                           <div class="col-sm-4">
+                              <label asp-for="BalanceAmount"  class="form-label"></label>
+                            <input  asp-for="BalanceAmount" placeholder="Balance" class="form-control" id="balanceamount_id" readonly ><br />
+                             <span asp-validation-for="BalanceAmount"></span>
                           </div>
                  </div>
-         <button type="submit" class="btn btn-primary" >Save</button>
-         </form>
-  </div>
-     
+       
 
-  <script>
+
+  </form>
+  </div>
+
+
+
+
+
+
+
+   
+  
+
+  @*<script>
       var totalprice=0;  
       var totalamount=0;
       var count=0;
@@ -153,9 +170,11 @@
         //       var res= p_a-t_a;
         //       var c= $('#balanceamount_id').val(res);
         //}
-  </script>
+  </script>*@
     <script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     </script>
+
+    </body>
