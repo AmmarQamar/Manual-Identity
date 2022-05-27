@@ -9,7 +9,7 @@ namespace Manual_Identity.ViewModels
         public int Id { get; set; }
 
         [Required]
-        [MinLength(4, ErrorMessage = "Minmum 4 number digits Required")]
+        //[MinLength(4, ErrorMessage = "Minmum 4 number digits Required")]
         public int InvoiceNumber { get; set; }
 
 
@@ -21,6 +21,7 @@ namespace Manual_Identity.ViewModels
 
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd-MM-yyyy}")]
         public DateTime SalesDate { get; set; }
 
         [NotMapped]

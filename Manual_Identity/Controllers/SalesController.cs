@@ -66,7 +66,7 @@ namespace Manual_Identity.Controllers
             int inv;
             Random rand = new Random();
             inv = rand.Next();
-            ViewData["DateTime"] = DateTime.Now;
+            ViewData["DateTime"] = DateTime.Now.Date;
             //DateTime dt = DateTime.Now;
             //ViewBag.dt = dt;
             ViewBag.Inv = inv;
@@ -78,11 +78,7 @@ namespace Manual_Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Sales(SalesViewModel model)
         {
-            //Random rand=new Random();
-            //model.InvoiceNumber=rand.Next();
-            //model.SalesDate = DateTime.Now;
-            //if (ModelState.IsValid)
-            //{
+            model.SalesDate = DateTime.Now.Date;
                 Sales sales = new Sales()
                 {
                     Id = model.Id,
@@ -96,8 +92,6 @@ namespace Manual_Identity.Controllers
                 };
                 _context.Sales.Add(sales);
                 await _context.SaveChangesAsync();
-
-
                 SalesViewModel salesmain = new SalesViewModel()
                 {
                     InvoiceNumber = model.InvoiceNumber,
@@ -109,8 +103,6 @@ namespace Manual_Identity.Controllers
                 _context.SalesMain.Add(salesmain);
                 await _context.SaveChangesAsync();
                return RedirectToAction("Student_List", "Stud_Dep");
-            //}
-            //return View();
         }
 
 
