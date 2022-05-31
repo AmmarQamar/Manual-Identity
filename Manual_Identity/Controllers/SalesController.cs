@@ -70,8 +70,17 @@ namespace Manual_Identity.Controllers
             //DateTime dt = DateTime.Now;
             //ViewBag.dt = dt;
             ViewBag.Inv = inv;
-            ViewBag.Customer =  _context.Customers.ToList();
-            ViewBag.Item =  _context.Items.ToList();
+            List<Customer> cus=new List<Customer>();
+            cus = _context.Customers.ToList();
+            cus.Insert(0, new Customer { CustomerId = 0, CustomerName = "Please Select Customer" });
+            ViewBag.Customer = cus;
+
+            List<Item> itm = new List<Item>();
+            itm = _context.Items.ToList();
+            itm.Insert(0, new Item { ItemId = 0, ItemName = "Please Select Item" });
+            ViewBag.Item = itm;
+            //ViewBag.Customer =  _context.Customers.ToList();
+            //ViewBag.Item = _context.Items.ToList();
             return View();       
         }
 

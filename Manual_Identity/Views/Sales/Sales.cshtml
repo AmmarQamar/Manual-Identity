@@ -107,16 +107,11 @@
     var sno=1;
     var n=0;
     $(".addtocart").click(function () 
-    {    
-        if(n==0)
-        {
-            $('.emptycart').css('display', 'block');
-        }
-        n++;
+    {
 
-        $('.emptycart').css('display', 'none');
-        $('#to').css('display', 'block');
-        $('#show_tab').css('display', 'block');
+        //$('.emptycart').css('display', 'none');
+        //$('#to').css('display', 'block');
+        //$('#show_tab').css('display', 'block');
         var invoice = $("#invoice_id").val();
         var customer = $("#customer_id").val();
         var item = $("#item_id").val();
@@ -128,8 +123,22 @@
         var itemtitle = $(".item-title");       
         //totalamount=totalprice+totalamount;
         var totalprice = (quantity * unitprice);
-        // Already Exists
+        if(n==0)
+        {
+            $('.emptycart').css('display', 'block');
+        }
+        if(quantity=="" || unitprice=="")
+        {
+        return;
+        }
 
+        else
+        {
+            $('.emptycart').css('display', 'none');
+            $('#to').css('display', 'flex');
+            $('#show_tab').css('display', 'block');
+            n++;
+        }
         for (var i = 0; i < carttitle.length; i++) {
             if (carttitle[i].innerText == customer && itemtitle[i].innerText == item) {
                 //alert("Already Exist Item so quantity only be changed  ");
@@ -141,12 +150,16 @@
                 uq=parseInt(quantity) +parseInt(o_quant);
                 c_quant[i].innerHTML = uq;
                 c_price[i].innerHTML = unitprice;
-             
+                debugger;
+                totalprice = (uq * unitprice)
                 c_total[i].innerHTML = totalprice;
                 totalamount = totalamount + totalprice - o_total;
                 $('#totalamount_id').val(totalamount);
                 var p = parseFloat($('#paidamount_id').val()) || 0;
                 $('#balanceamount_id').val(p-totalamount);
+                //$("#quantity_id").val("");
+                //$("#unitprice_id").val("");
+
                 return
             }
         }        
@@ -164,6 +177,7 @@
         $('#show_tab').append(content);
         count++;
         sno++;
+   
         totalamount = totalprice + totalamount;
         $('#to').css('display', 'flex');
         var t_a = $('#totalamount_id').val(totalamount);
@@ -175,21 +189,32 @@
             var value2 = parseFloat($('#paidamount_id').val()) || 0;
             $('#balanceamount_id').val(value2 - value1);
         });
-           $("#quantity_id").val("");
-           $("#unitprice_id").val("");
+           //$("#quantity_id").val("");
+           //$("#unitprice_id").val("");
 
              $(".removeitem").click(function()
                 {   
                   alert("Are you sure you want to delete");
                   debugger;
-                  //var value1 = parseFloat($('#totalamount_id').val()) || 0;
-                  //var value2 = parseFloat($('#paidamount_id').val()) || 0;
+                  var d_total=$(this).closest('.total').val();
+                  var d_total=$(this).closest('.total').val();
+                  //var d_total=$(this).closest('.jscartitem').find('.total').val();
+                  
+                  console.log(d_total);
+                  alert(d_total);
+                  
+                  //var d_total=$(this).closest('.jscartitem .total').find('#tp').val();
+
                   //var d_total=$(this).closest('.total').attr('value');
-                  //$('#totalamount_id').val(value1-d_total);
+                  //var d_total=$(this).closest('.jscartitem').find('#tp').innerText;
+                  var p= parseInt(d_total);
                   //var d_total=$(this).closest('.total').find('#tp').val();
-                  //totalamount=totalamount-d_total;
-                  $(this).closest('.jscartitem').remove();
                    //var val = $(this).closest("div.options").find("input[name='quantity']").val();
+                  var value1 = parseFloat($('#totalamount_id').val()) || 0;
+                  var value2 = parseFloat($('#paidamount_id').val()) || 0;
+                  totalamount=totalamount-d_total;
+                  $('#totalamount_id').val(value2-value1);
+                  $(this).closest('.jscartitem').remove();
 
                   var c=sno;
                   var s=1;
