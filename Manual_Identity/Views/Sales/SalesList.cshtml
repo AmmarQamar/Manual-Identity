@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Manual_Identity.ViewModels.SalesViewModel>
+@{
+    ViewData["Title"] = "Sales List";
+    Layout = "~/Views/Shared/SideNavBar.cshtml";
+}
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<main class="main-content  mt-0">
+    <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice No</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sales Date</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Total Amount</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Paid Amount</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Balance</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs text-secondary font-weight-bold mb-0">@item.InvoiceNumber</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.SalesDate.ToShortDateString()</p>
+                                    </td> 
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.TotalAmount</p>
+                                    </td>
+                                     <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.PaidAmount</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">@item.BalanceAmount</p>
+                                    </td>
+
+                                 @*   <td class="align-middle text-center text-sm">
+                                        <form method="get">
+                                             <a class="badge badge-sm bg-gradient-success" asp-action="Student_Edit" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user">
+                                                Edit
+                                            </a>
+                                            <a class="badge badge-sm bg-gradient-success" asp-action="Student_Detail" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user">
+                                                Detail
+                                            </a>
+                                            <a class="badge badge-sm bg-gradient-success" asp-action="Student_Delete" asp-route-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Are you want to delete:@item.InvoiceNumber')">
+                                                Delete
+                                            </a>
+                                             <a class="badge badge-sm bg-gradient-success printBtn"  asp-controller="Home" asp-action="printreport" asp-route-id="@item.Id" target="_blank" data-id="@item.Id" data-toggle="tooltip" data-original-title="Edit user">
+                                                Report
+                                            </a>
+
+                                        </form>
+                                    </td>*@
+
+                                </tr>
+                              
+                }
+            </table>
+                             <div class="text-center">
+                    <form method="get">
+                                    <button type="submit" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-sm bg-gradient-primary btn-sm w-60 mt-4 mb-0">Back</button>
+                                </form></div>
+              </div>
+        </div>
+    </div>
+

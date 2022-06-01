@@ -2,6 +2,7 @@
 using Manual_Identity.Models;
 using Manual_Identity.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Manual_Identity.Controllers
 {
@@ -114,6 +115,9 @@ namespace Manual_Identity.Controllers
                return RedirectToAction("Student_List", "Stud_Dep");
         }
 
-
+        public async Task<IActionResult> SalesList()
+        {
+            return View(await _context.SalesMain.ToListAsync());
+        }
     }
 }
