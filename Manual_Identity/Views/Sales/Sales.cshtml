@@ -23,12 +23,12 @@
            <div class="col-sm-4">
                <input asp-for="SalesDate" value="" type="hidden"/>
              <label class="form-label">Invoice No:</label>
-             <input asp-for="InvoiceNumber" class="form-control inv" value="@ViewBag.Inv" readonly/>
+             <input asp-for="InvoiceNumber" class="form-control inv" name="InvoiceNumber" value="@ViewBag.Inv" readonly/>
              <span asp-validation-for="InvoiceNumber" ></span>
            </div>
            <div class="col-sm-4">
              <label class="form-label">Purchase Date:</label>
-                    <input asp-for="SalesDate" value="@ViewData["DataTime"]" class="form-control" />
+                    <input asp-for="SalesDate" value="@ViewData["DataTime"]" class="form-control sal_date" />
              @*<span asp-validation-for="SalesDate"></span>*@
            </div>
             <div class="col-sm-4 mb-3">
@@ -38,17 +38,17 @@
            </div>
            <div class="col-sm-4">
               <label class="form-label">Item ID:</label>
-              <select asp-for="ItemId" class="form-control ml-10 max-width-300" id="item_id"
+              <select asp-for="ItemId" class="form-control ml-10 max-width-300 item_id" id="item_id"
                  asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))"></select>
            </div>
             <div class="col-sm-4">
              <label class="form-label">Quantity:</label>
-             <input asp-for="Quantity" class="form-control" id="quantity_id" />
+             <input asp-for="Quantity" class="form-control quantity_id" id="quantity_id" />
              <span asp-validation-for="Quantity"></span>
            </div>
            <div class="col-sm-4">
              <label class="form-label">Unit Price:</label>
-             <input asp-for="UnitPrice" class="form-control" id="unitprice_id" />
+             <input asp-for="UnitPrice" class="form-control unitprice_id" id="unitprice_id" />
              <span asp-validation-for="UnitPrice"></span>
            </div>
         </div>
@@ -81,15 +81,16 @@
                              <span asp-validation-for="BalanceAmount"></span>
                           </div>
                           <div style="margin:20px 10px">
-                 <button type="submit" class="btn btn-primary">Save</button>
-                 <a type="button" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-primary">Back</a>
+                 <input type="button" class="btn btn-primary btn-save" style="width:120px"  value="Save"/> @*onclick="submitform();"*@
+                 @*<button type="submit" class="btn btn-primary" style="width:120px">Save</button>*@
+                 @*<a type="button" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-primary">Back</a>*@
                  </div>
                  </div>
        
                  
   </form>
-                   <a type="button" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-primary" style="margin-left: 1%;
-    width: 100px;">Back</a>
+                   <a type="button" asp-controller="Stud_Dep" asp-action="Student_List" class="btn btn-primary" style="margin-left: 40%;
+    width: 200px;">Back</a>
 
   </div>
 
@@ -113,14 +114,13 @@
     $(".addtocart").click(function () 
     {
 
-        //$('.emptycart').css('display', 'none');
-        //$('#to').css('display', 'block');
-        //$('#show_tab').css('display', 'block');
         var invoice = $("#invoice_id").val();
         var inv = $(".inv");
         var customer = $("#customer_id").val();
+        var saledate = $(".sal_date").val();
         var item = $("#item_id").val();
         var itemName = $("#item_id option:selected").text();
+        debugger;
         var quantity = $("#quantity_id").val();
         var unitprice = $("#unitprice_id").val();
         var carttitle = $(".customer-title");
@@ -130,11 +130,10 @@
         {
             $('.emptycart').css('display', 'block');
         }
-        if(quantity=="" || unitprice=="")
-        {
+        if(quantity=="" || unitprice=="" || customer=="0" || item=="0" || saledate=="")
+        { alert("Please fill all Fields");
         return;
         }
-
         else
         {
             $('.emptycart').css('display', 'none');
@@ -159,22 +158,21 @@
                 $('#totalamount_id').val(totalamount);
                 var p = parseFloat($('#paidamount_id').val()) || 0;
                 $('#balanceamount_id').val(p-totalamount);
-                //$("#quantity_id").val("");
-                //$("#unitprice_id").val("");
+                $("#quantity_id").val("");
+                $("#unitprice_id").val("");
                 return
             }
         }        
-
         if (count == 0)
         {
             content = "<div class='row'> <div class='col-sm-2' style='display:none'>Customer Id</div> <div class='col-sm-2' style='display:none'>Item Id</div> <div class='col-sm-2'>Serial No</div>  <div class='col-sm-2'>Item Name</div> <div class='col-sm-2'>Quantity</div> <div class='col-sm-2'>Unit Price</div>  <div class='col-sm-2'>Total Price</div> <div class='col-sm-2'>Actions</div></div>"
-            //content ="<label class='form-label'>Customer Id<label> <label class='form-label'>Item Id<label> <label class='form-label'>Item Name<label> <label class='form-label'>Quantity<label> <label class='form-label'>Unit Price<label>"
-            //content = "<tr><th>InVoice No</th><th>Customer Id</th><th>Item Id</th><th>Item Name</th><th>Quantity</th><th>Unit Price</th><th>Total Price</th></tr>";
             $('#show_tab').append(content);
             count++;
         }    
-        content = " <div class='row jscartitem' > <div class='jrcart col-sm-2 customer-title' style='display:none'/>" + customer + "</div> <div class='jrcart col-sm-2 item-title' style='display:none'>" + item + "</div>  <div class='col-sm-2 jrcart sn'>" + sno + "</div> <div class='col-sm-2 jrcart'>" + itemName + "</div> <div class=' jrcart col-sm-2 quantity' id='qu_id'>" + quantity + "</div> <div class='jrcart col-sm-2 price' >" + unitprice + "</div> <div class='col-sm-2 total' id='tp'>" + totalprice + "</div><div class='col-sm-2'><input type='button' class='btn btn-primary removeitem'  value='Delete'/><input type='button' style='margin-left:3px;' class='btn btn-primary updatequantity' value='Update'/></div></div>"
+        content = " <div class='row jscartitem' > <div class='jrcart col-sm-2 customer-title' style='display:none'/>" + customer + "</div> <div class='jrcart col-sm-2 item-title' style='display:none'>" + item + "</div>  <div class='col-sm-2 jrcart sn'>" + sno + "</div> <div class='col-sm-2 jrcart'>" + itemName + "</div> <div class=' jrcart col-sm-2 quantity' id='qu_id'>" + quantity + "</div> <div class='jrcart col-sm-2 price' >" + unitprice + "</div> <div class='col-sm-2 total' id='tp'>" + totalprice + "</div><div class='col-sm-2'><input type='button' class='btn btn-primary removeitem'  value='Delete'/><input type='button' style='width:70px;margin:0px 2px' class='btn btn-primary updatequantity' style='width:70px;' value='Update'/></div></div>"
         $('#show_tab').append(content);
+        $('.sal_date').attr('disabled', true);
+        $('#customer_id').attr('disabled', true);
         count++;
         sno++;  
         totalamount = totalprice + totalamount;
@@ -189,14 +187,11 @@
             var value2 = parseFloat($('#paidamount_id').val()) || 0;
             $('#balanceamount_id').val(value2 - value1);
         });
-           //$("#quantity_id").val("");
-           //$("#unitprice_id").val("");
+           $("#quantity_id").val("");
+           $("#unitprice_id").val("");
             
            $(".removeitem").off().click(function(e) 
             {    
-               //event.stopPropagation();
-               //event.stopImmediatePropagation();
- 
                  if(e.target && e.target.classList.contains('removeitem'))
                  {
                   alert("Are you sure you want to delete");
@@ -208,8 +203,6 @@
                   $('#totalamount_id').val(totalamount);
                   $('#balanceamount_id').val(value2 - totalamount);       
                   $(this).closest('.jscartitem').remove();
-                  var c=sno;
-                  var s=1;
                   sno=1;
                   var carttitle = $(".customer-title");
                   for(var i=0;i<carttitle.length;i++)
@@ -251,6 +244,62 @@
                            $('#balanceamount_id').val(value2 - totalamount);   
                       }
                     
+                });
+
+                $(".btn-save").off().click(function()
+                {
+                    var InvoiceNumber=$(".inv").val();
+                    InvoiceNumber=parseInt(InvoiceNumber);
+                    var SalesDate=$(".sal_date").val();
+                    var carttitle = $(".customer-title");
+                    var CustomerId= parseInt($("#customer_id").val());
+                    for (var i = 0; i < carttitle.length; i++) 
+                    {
+                        var Quantity= $(".quantity")[i].innerText;
+                        var UnitPrice= $(".price")[i].innerText;
+                        var ItemId= $(".item-title")[i].innerText
+                        ItemId=parseInt(ItemId);
+                        Quantity=parseInt(Quantity);
+                        UnitPrice=parseInt(UnitPrice);
+                        var cartitems={
+                        InvoiceNumber:InvoiceNumber,
+                        SalesDate:SalesDate,
+                        ItemId:ItemId,
+                        Quantity:Quantity,
+                        UnitPrice:UnitPrice,
+                        };
+                    // Ajax start
+                      $.ajax({
+                        url:"",
+                        type:"post",
+                        data:cartitems,
+                        success:function(response){console.log(response)}
+                      });
+                    }  
+                    var TotalAmount=parseInt($('#totalamount_id').val());
+                    var PaidAmount=parseInt($('#paidamount_id').val());
+                    var BalanceAmount=parseInt($('#balanceamount_id').val());
+                    var salesmain={
+                        InvoiceNumber:InvoiceNumber,
+                        SalesDate:SalesDate,
+                        CustomerId:CustomerId,
+                        TotalAmount:TotalAmount,
+                        PaidAmount:PaidAmount,
+                        BalanceAmount:BalanceAmount,
+                    };
+                    //// Ajax start
+                    debugger;
+                    $.ajax({
+                        url:"Sales/SalesMain",
+                        type:"post",
+                        data:salesmain,
+                        success:function(data)
+                        {
+                            alert("Data Store Successfully");
+                            window.location.href = data.newUrl;
+                        }
+                    });
+// Ajax end
                 });
      
     });

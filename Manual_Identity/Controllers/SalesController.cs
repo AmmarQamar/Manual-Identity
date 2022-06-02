@@ -88,7 +88,7 @@ namespace Manual_Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Sales(SalesMainModel model)
         {
-            model.SalesDate = DateTime.Now.Date;
+            //model.SalesDate = DateTime.Now.Date;
                 Sales_Item sales = new Sales_Item()
                 {
                     //SalesItem_Id = model.SalesMain_Id,
@@ -101,18 +101,39 @@ namespace Manual_Identity.Controllers
                 };
                 _context.Sales_Items.Add(sales);
                 await _context.SaveChangesAsync();
-                SalesMainModel salesmain = new SalesMainModel()
-                {
-                    InvoiceNumber = model.InvoiceNumber,
-                    CustomerId=model.CustomerId,
-                    SalesDate =model.SalesDate,
-                    TotalAmount=model.TotalAmount,
-                    PaidAmount=model.PaidAmount,
-                    BalanceAmount=model.BalanceAmount
-                };
-                _context.SalesMains.Add(salesmain);
-                await _context.SaveChangesAsync();
+                //salesmainmodel salesmain = new salesmainmodel()
+                //{
+                //    invoicenumber = model.invoicenumber,
+                //    customerid=model.customerid,
+                //    salesdate =model.salesdate,
+                //    totalamount=model.totalamount,
+                //    paidamount=model.paidamount,
+                //    balanceamount=model.balanceamount
+                //};
+                //_context.salesmains.add(salesmain);
+                //await _context.savechangesasync();
                return RedirectToAction("Student_List", "Stud_Dep");
+        }
+
+        public async Task<IActionResult> SalesMain(SalesMainModel model)
+        {
+            SalesMainModel salesmain = new SalesMainModel()
+        {
+            InvoiceNumber = model.InvoiceNumber,
+            CustomerId = model.CustomerId,
+            SalesDate = model.SalesDate,
+            TotalAmount = model.TotalAmount,
+            PaidAmount = model.PaidAmount,
+            BalanceAmount = model.BalanceAmount
+        };     
+           _context.SalesMains.Add(salesmain);
+            await _context.SaveChangesAsync();
+            //return RedirectToAction("Student_List", "Stud_Dep");
+
+            return Json(new
+            {
+                newUrl = Url.Action("Student_List", "Stud_Dep") 
+            });
         }
 
         public async Task<IActionResult> SalesList()
