@@ -17,8 +17,8 @@ namespace Manual_Identity.Data
         public DbSet<CourseViewModel> Courses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<Sales> Sales { get; set; }
-        public DbSet<SalesViewModel> SalesMain { get; set; }
+        public DbSet<Sales_Item> Sales_Items { get; set; }
+        public DbSet<SalesMainModel> SalesMains { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

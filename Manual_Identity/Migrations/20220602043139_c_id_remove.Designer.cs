@@ -4,6 +4,7 @@ using Manual_Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manual_Identity.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220602043139_c_id_remove")]
+    partial class c_id_remove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,11 +162,11 @@ namespace Manual_Identity.Migrations
 
             modelBuilder.Entity("Manual_Identity.Models.Sales_Item", b =>
                 {
-                    b.Property<int>("SalesItem_Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalesItem_Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("InvoiceNumber")
                         .HasColumnType("int");
@@ -181,9 +183,9 @@ namespace Manual_Identity.Migrations
                     b.Property<int>("UnitPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("SalesItem_Id");
+                    b.HasKey("Id");
 
-                    b.ToTable("Sales_Items");
+                    b.ToTable("Sales_Item");
                 });
 
             modelBuilder.Entity("Manual_Identity.Models.StudentViewModel", b =>
@@ -234,18 +236,15 @@ namespace Manual_Identity.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Manual_Identity.ViewModels.SalesMainModel", b =>
+            modelBuilder.Entity("Manual_Identity.ViewModels.SalesViewModel", b =>
                 {
-                    b.Property<int>("SalesMain_Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SalesMain_Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("BalanceAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("InvoiceNumber")
@@ -260,9 +259,9 @@ namespace Manual_Identity.Migrations
                     b.Property<int>("TotalAmount")
                         .HasColumnType("int");
 
-                    b.HasKey("SalesMain_Id");
+                    b.HasKey("Id");
 
-                    b.ToTable("SalesMains");
+                    b.ToTable("SalesMain");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -4,6 +4,7 @@ using Manual_Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manual_Identity.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220602050810_add_salesmain")]
+    partial class add_salesmain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,7 +185,7 @@ namespace Manual_Identity.Migrations
 
                     b.HasKey("SalesItem_Id");
 
-                    b.ToTable("Sales_Items");
+                    b.ToTable("Sales_Item");
                 });
 
             modelBuilder.Entity("Manual_Identity.Models.StudentViewModel", b =>
@@ -262,7 +264,7 @@ namespace Manual_Identity.Migrations
 
                     b.HasKey("SalesMain_Id");
 
-                    b.ToTable("SalesMains");
+                    b.ToTable("SalesMain");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -86,38 +86,39 @@ namespace Manual_Identity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Sales(SalesViewModel model)
+        public async Task<IActionResult> Sales(SalesMainModel model)
         {
             model.SalesDate = DateTime.Now.Date;
-                Sales sales = new Sales()
+                Sales_Item sales = new Sales_Item()
                 {
-                    Id = model.Id,
+                    //SalesItem_Id = model.SalesMain_Id,
                     InvoiceNumber=model.InvoiceNumber,
-                    CustomerId=model.CustomerId,
+                    SalesDate=model.SalesDate,
                     ItemId = model.ItemId,
                     UnitPrice=model.UnitPrice,
-                    SalesDate=model.SalesDate,
                     Quantity=model.Quantity,
                     
                 };
-                _context.Sales.Add(sales);
+                _context.Sales_Items.Add(sales);
                 await _context.SaveChangesAsync();
-                SalesViewModel salesmain = new SalesViewModel()
+                SalesMainModel salesmain = new SalesMainModel()
                 {
                     InvoiceNumber = model.InvoiceNumber,
-                    SalesDate=model.SalesDate,
+                    CustomerId=model.CustomerId,
+                    SalesDate =model.SalesDate,
                     TotalAmount=model.TotalAmount,
                     PaidAmount=model.PaidAmount,
                     BalanceAmount=model.BalanceAmount
                 };
-                _context.SalesMain.Add(salesmain);
+                _context.SalesMains.Add(salesmain);
                 await _context.SaveChangesAsync();
                return RedirectToAction("Student_List", "Stud_Dep");
         }
 
         public async Task<IActionResult> SalesList()
         {
-            return View(await _context.SalesMain.ToListAsync());
+            
+            return View(await _context.SalesMains.ToListAsync());
         }
     }
 }
