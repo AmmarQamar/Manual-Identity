@@ -27,5 +27,7 @@ namespace Manual_Identity.Models
 
         [Required]
         public int UnitPrice { get; set; }
+        
+
     }
 }

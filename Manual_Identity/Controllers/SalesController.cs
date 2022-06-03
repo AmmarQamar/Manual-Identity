@@ -68,14 +68,11 @@ namespace Manual_Identity.Controllers
             Random rand = new Random();
             inv = rand.Next();
             ViewData["DateTime"] = DateTime.Now.Date;
-            //DateTime dt = DateTime.Now;
-            //ViewBag.dt = dt;
             ViewBag.Inv = inv;
             List<Customer> cus=new List<Customer>();
             cus = _context.Customers.ToList();
             cus.Insert(0, new Customer { CustomerId = 0, CustomerName = "Please Select Customer" });
             ViewBag.Customer = cus;
-
             List<Item> itm = new List<Item>();
             itm = _context.Items.ToList();
             itm.Insert(0, new Item { ItemId = 0, ItemName = "Please Select Item" });
@@ -101,18 +98,7 @@ namespace Manual_Identity.Controllers
                 };
                 _context.Sales_Items.Add(sales);
                 await _context.SaveChangesAsync();
-                //salesmainmodel salesmain = new salesmainmodel()
-                //{
-                //    invoicenumber = model.invoicenumber,
-                //    customerid=model.customerid,
-                //    salesdate =model.salesdate,
-                //    totalamount=model.totalamount,
-                //    paidamount=model.paidamount,
-                //    balanceamount=model.balanceamount
-                //};
-                //_context.salesmains.add(salesmain);
-                //await _context.savechangesasync();
-               return RedirectToAction("Student_List", "Stud_Dep");
+                return RedirectToAction("Student_List", "Stud_Dep");
         }
 
         public async Task<IActionResult> SalesMain(SalesMainModel model)
@@ -128,11 +114,9 @@ namespace Manual_Identity.Controllers
         };     
            _context.SalesMains.Add(salesmain);
             await _context.SaveChangesAsync();
-            //return RedirectToAction("Student_List", "Stud_Dep");
-
             return Json(new
             {
-                newUrl = Url.Action("Student_List", "Stud_Dep") 
+                newUrl = Url.Action("SalesList", "Stud_Dep") 
             });
         }
 

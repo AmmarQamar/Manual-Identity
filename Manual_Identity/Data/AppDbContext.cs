@@ -7,9 +7,9 @@ using Manual_Identity.ViewModels;
 
 namespace Manual_Identity.Data
 {
-    public class AppDbContext :IdentityDbContext<ApplicationUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) :base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }
@@ -22,13 +22,8 @@ namespace Manual_Identity.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
         }
-
-
-        //public DbSet<Manual_Identity.Models.RegisterViewModel> RegisterViewModel { get; set; }
+        public DbSet<Manual_Identity.Models.RegisterViewModel> RegisterViewModel { get; set; }
 
     }
 }

@@ -7,25 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Microsft Sql Server Management Studio
+//builder.Services.AddDbContext<AppDbContext>(
+//    options => options.UseSqlServer
+//    (builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Below MySql Workbench
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseSqlServer
-    (builder.Configuration.GetConnectionString("DefaultConnection")));
+    options => options.UseMySql( connectionString,new MySqlServerVersion(new Version(8,0,28))));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
-
-//builder.Services.Configure<IdentityOptions>(options =>
-//{
-//    // Password settings.
-//    options.Password.RequireDigit = false;
-//    options.Password.RequireLowercase = false;
-//    options.Password.RequireNonAlphanumeric = false;
-//    options.Password.RequireUppercase = false;
-//    options.Password.RequiredLength = 2;
-//    options.Password.RequiredUniqueChars =0 ;
-//});
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
