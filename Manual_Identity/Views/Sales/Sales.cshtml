@@ -38,7 +38,7 @@
            </div>
            <div class="col-sm-4">
               <label class="form-label">Item ID:</label>
-              <select asp-for="ItemId" class="form-control ml-10 max-width-300 item_id" id="item_id"
+              <select asp-for="ItemId" class="form-control ml-10 max-width-300 itemid" id="item_id"
                  asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))"></select>
            </div>
             <div class="col-sm-4">
@@ -120,7 +120,6 @@
         var saledate = $(".sal_date").val();
         var item = $("#item_id").val();
         var itemName = $("#item_id option:selected").text();
-        debugger;
         var quantity = $("#quantity_id").val();
         var unitprice = $("#unitprice_id").val();
         var carttitle = $(".customer-title");
@@ -150,8 +149,7 @@
                 var o_quant = $(".quantity")[i].innerText;
                 uq=parseInt(quantity) +parseInt(o_quant);
                 c_quant[i].innerHTML = uq;
-                c_price[i].innerHTML = unitprice;
-                debugger;
+                c_price[i].innerHTML = unitprice;                
                 totalprice = (uq * unitprice)
                 c_total[i].innerHTML = totalprice;
                 totalamount = totalamount + totalprice - o_total;
@@ -160,6 +158,7 @@
                 $('#balanceamount_id').val(p-totalamount);
                 $("#quantity_id").val("");
                 $("#unitprice_id").val("");
+                $("#item_id")[0].selectedIndex = 0;
                 return
             }
         }        
@@ -189,7 +188,8 @@
         });
            $("#quantity_id").val("");
            $("#unitprice_id").val("");
-            
+           $("#item_id")[0].selectedIndex = 0;
+           
            $(".removeitem").off().click(function(e) 
             {    
                  if(e.target && e.target.classList.contains('removeitem'))
@@ -257,7 +257,7 @@
                     {
                         var Quantity= $(".quantity")[i].innerText;
                         var UnitPrice= $(".price")[i].innerText;
-                        var ItemId= $(".item-title")[i].innerText
+                        var ItemId= $(".item-title")[i].innerText;
                         ItemId=parseInt(ItemId);
                         Quantity=parseInt(Quantity);
                         UnitPrice=parseInt(UnitPrice);
